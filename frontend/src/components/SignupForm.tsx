@@ -1,3 +1,4 @@
+// SignupForm.tsx
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,27 +10,36 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
+import { User2Icon } from "lucide-react";
 
 export const SignupForm: React.FC = () => {
   return (
-    <Card className="w-full max-w-md shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl font-semibold text-gray-800">
-          Register as Teacher or Student
+    <Card className="w-full max-w-md shadow-lg bg-white">
+      <CardHeader className="space-y-1">
+        <CardTitle className="text-2xl font-bold text-blue-700">
+          Join Probe Stemm
         </CardTitle>
         <p className="text-sm text-gray-600">
-          Already a user?{" "}
-          <a href="#" className="text-orange-500 hover:underline">
+          Already a member?{" "}
+          <a
+            href="/login"
+            className="text-blue-600 hover:underline font-medium"
+          >
             Log in
           </a>
         </p>
       </CardHeader>
       <CardContent>
         <form className="space-y-4">
-          <Input type="text" placeholder="Name" className="border-gray-300" />
+          <Input
+            type="text"
+            placeholder="Full Name"
+            className="border-gray-300"
+          />
           <Input
             type="email"
-            placeholder="Email ID"
+            placeholder="Email Address"
             className="border-gray-300"
           />
           <Input
@@ -43,37 +53,36 @@ export const SignupForm: React.FC = () => {
             className="border-gray-300"
           />
           <Select>
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Student/Teacher" />
+            <SelectTrigger className="w-full border-gray-300">
+              <SelectValue placeholder="I am a..." />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="student">Student</SelectItem>
               <SelectItem value="teacher">Teacher</SelectItem>
+              <SelectItem value="business">Business</SelectItem>
             </SelectContent>
           </Select>
           <div className="flex items-center space-x-2">
-            <input type="checkbox" id="terms" className="form-checkbox" />
+            <Checkbox id="terms" />
             <label htmlFor="terms" className="text-sm text-gray-600">
-              Your data is secure with us
+              I agree to the{" "}
+              <a href="#" className="text-blue-600 hover:underline">
+                Terms of Service
+              </a>{" "}
+              and{" "}
+              <a href="#" className="text-blue-600 hover:underline">
+                Privacy Policy
+              </a>
             </label>
           </div>
           <Button
             type="submit"
-            className="w-full bg-orange-500 hover:bg-orange-600"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white"
           >
-            Register
+            Sign Up
+            <User2Icon className="ml-2 h-4 w-4" />
           </Button>
         </form>
-        <p className="mt-4 text-xs text-gray-600">
-          By proceeding ahead you expressly agree to Probe Stemm's{" "}
-          <a href="#" className="text-orange-500 hover:underline">
-            Terms & Conditions
-          </a>{" "}
-          and{" "}
-          <a href="#" className="text-orange-500 hover:underline">
-            Privacy Policy
-          </a>
-        </p>
       </CardContent>
     </Card>
   );

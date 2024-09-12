@@ -1,18 +1,23 @@
+// LoginForm.tsx
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { LogInIcon } from "lucide-react";
 
 export const LoginForm: React.FC = () => {
   return (
-    <Card className="w-full max-w-md shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl font-semibold text-gray-800">
-          Login as Teacher or Student
+    <Card className="w-full max-w-md shadow-lg bg-white">
+      <CardHeader className="space-y-1">
+        <CardTitle className="text-2xl font-bold text-blue-700">
+          Welcome Back
         </CardTitle>
         <p className="text-sm text-gray-600">
-          New user?{" "}
-          <a href="/signup" className="text-orange-500 hover:underline">
+          New to Probe Stemm?{" "}
+          <a
+            href="/signup"
+            className="text-blue-600 hover:underline font-medium"
+          >
             Sign up
           </a>
         </p>
@@ -21,7 +26,7 @@ export const LoginForm: React.FC = () => {
         <form className="space-y-4">
           <Input
             type="email"
-            placeholder="Email ID"
+            placeholder="Email Address"
             className="border-gray-300"
           />
           <Input
@@ -30,24 +35,18 @@ export const LoginForm: React.FC = () => {
             className="border-gray-300"
           />
           <div className="flex justify-between items-center">
-            <a href="#" className="text-orange-500 text-sm hover:underline">
-              Forgot Password
+            <a href="#" className="text-sm text-blue-600 hover:underline">
+              Forgot Password?
             </a>
-            <Button type="submit" className="bg-orange-500 hover:bg-orange-600">
-              Login
-            </Button>
           </div>
+          <Button
+            type="submit"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+          >
+            Log In
+            <LogInIcon className="ml-2 h-4 w-4" />
+          </Button>
         </form>
-        <p className="mt-4 text-xs text-gray-600">
-          By proceeding ahead you expressly agree to Probe Stemm's{" "}
-          <a href="#" className="text-orange-500 hover:underline">
-            Terms & Conditions
-          </a>{" "}
-          and{" "}
-          <a href="#" className="text-orange-500 hover:underline">
-            Privacy Policy
-          </a>
-        </p>
       </CardContent>
     </Card>
   );
