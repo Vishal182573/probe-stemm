@@ -1,24 +1,26 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Rocket, Brain, Zap, GraduationCap } from "lucide-react";
+import { Rocket, Brain, Zap, GraduationCap, ChevronDown, Star } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import NotificationsComponent from "@/components/Notifications";
 
 const HomePage = () => {
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100">
+    <div className="flex flex-col min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
       <Navbar />
       <main className="flex-grow">
         <HeroSection />
         <FeaturesSection />
+        <NotificationsSection />
         <TestimonialsSection />
         <FAQSection />
       </main>
@@ -27,31 +29,88 @@ const HomePage = () => {
   );
 };
 
+const images = ["/c1.png", "/c2.png", "/c3.png"];
+
 const HeroSection = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === images.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="py-20 px-4 text-center">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        <h1 className="text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600">
-          Revolutionize Your STEM Learning
-        </h1>
-        <p className="text-xl mb-8 text-gray-600 max-w-2xl mx-auto">
+    <section className="relative h-[90vh] flex items-center justify-center overflow-hidden">
+      <AnimatePresence initial={false}>
+        <motion.div
+          key={currentImageIndex}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1 }}
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${images[currentImageIndex]})` }}
+        />
+      </AnimatePresence>
+      
+      <div className="absolute inset-0 bg-black bg-opacity-60 z-10" />
+
+      <div className="relative z-20 text-center px-4 max-w-5xl mx-auto">
+        <motion.h1 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-6xl md:text-8xl font-extrabold mb-6 text-white"
+        >
+          Revolutionize Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">STEM</span> Learning
+        </motion.h1>
+        
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="text-xl md:text-2xl mb-10 text-gray-200 max-w-3xl mx-auto"
+        >
           Probe Stemm: Where innovation meets education. Dive into a world of
           interactive learning, cutting-edge technology, and global
           collaboration.
-        </p>
-        <Link to="/get-started">
+        </motion.p>
+        
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="flex justify-center space-x-4"
+        >
+          <Link to="/discussions">
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg text-lg"
+            >
+              Get Started
+              <Rocket className="ml-2 h-6 w-6" />
+            </Button>
+          </Link>
           <Button
             size="lg"
-            className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105"
+            variant="outline"
+            className="bg-transparent border-2 border-white text-white font-bold py-4 px-8 rounded-full transition-all duration-300 hover:bg-white hover:text-purple-600 text-lg"
           >
-            Get Started
-            <Rocket className="ml-2 h-5 w-5" />
+            Learn More
           </Button>
-        </Link>
+        </motion.div>
+      </div>
+
+      <motion.div 
+        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20"
+        animate={{ y: [0, 10, 0] }}
+        transition={{ repeat: Infinity, duration: 1.5 }}
+      >
+        <ChevronDown className="text-white h-10 w-10" />
       </motion.div>
     </section>
   );
@@ -60,19 +119,19 @@ const HeroSection = () => {
 const FeaturesSection = () => {
   const features = [
     {
-      icon: <Brain className="h-12 w-12 text-purple-500" />,
+      icon: <Brain className="h-16 w-16 text-blue-500" />,
       title: "AI-Powered Learning",
       description:
         "Personalized learning paths adapted to your unique needs and pace.",
     },
     {
-      icon: <Zap className="h-12 w-12 text-pink-500" />,
+      icon: <Zap className="h-16 w-16 text-purple-500" />,
       title: "Real-time Collaboration",
       description:
         "Connect with peers and mentors globally for dynamic project work.",
     },
     {
-      icon: <GraduationCap className="h-12 w-12 text-indigo-500" />,
+      icon: <GraduationCap className="h-16 w-16 text-pink-500" />,
       title: "Industry-Aligned Curriculum",
       description:
         "Stay ahead with courses designed in partnership with leading tech companies.",
@@ -80,28 +139,41 @@ const FeaturesSection = () => {
   ];
 
   return (
-    <section className="py-20 px-4 bg-white">
-      <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">
-        Why Choose Probe Stemm?
+    <section className="py-24 px-4 bg-white">
+      <h2 className="text-5xl font-bold text-center mb-16 text-gray-800">
+        Why Choose <span className="text-purple-600">Probe Stemm</span>?
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-7xl mx-auto">
         {features.map((feature, index) => (
           <motion.div
             key={index}
-            className="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-lg shadow-lg"
+            className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-xl shadow-xl transform hover:scale-105 transition-all duration-300"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
           >
             <div className="flex flex-col items-center text-center">
               {feature.icon}
-              <h3 className="text-xl font-semibold mt-4 mb-2">
+              <h3 className="text-2xl font-semibold mt-6 mb-4">
                 {feature.title}
               </h3>
-              <p className="text-gray-600">{feature.description}</p>
+              <p className="text-gray-600 text-lg">{feature.description}</p>
             </div>
           </motion.div>
         ))}
+      </div>
+    </section>
+  );
+};
+
+const NotificationsSection = () => {
+  return (
+    <section className="py-20 bg-gradient-to-r from-purple-100 to-pink-100">
+      <div className="max-w-7xl mx-auto px-4">
+        <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">
+          Stay Updated
+        </h2>
+        <NotificationsComponent />
       </div>
     </section>
   );
@@ -113,35 +185,43 @@ const TestimonialsSection = () => {
       quote:
         "Probe Stemm transformed my learning experience. The interactive projects and global network are unparalleled.",
       author: "Sarah K., Computer Science Student",
+      rating: 5,
     },
     {
       quote:
         "As an educator, Probe Stemm provides me with cutting-edge tools to engage my students like never before.",
       author: "Dr. James L., University Professor",
+      rating: 5,
     },
     {
       quote:
         "The talent we've recruited through Probe Stemm has been exceptional. It's our go-to platform for finding innovators.",
       author: "Emily R., Tech Startup Founder",
+      rating: 5,
     },
   ];
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100">
-      <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">
+    <section className="py-24 px-4 bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100">
+      <h2 className="text-5xl font-bold text-center mb-16 text-gray-800">
         What Our Community Says
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-7xl mx-auto">
         {testimonials.map((testimonial, index) => (
           <motion.div
             key={index}
-            className="bg-white p-6 rounded-lg shadow-lg"
+            className="bg-white p-8 rounded-xl shadow-xl"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
           >
-            <p className="text-gray-600 italic mb-4">"{testimonial.quote}"</p>
-            <p className="text-gray-800 font-semibold">{testimonial.author}</p>
+            <div className="flex justify-center mb-4">
+              {[...Array(testimonial.rating)].map((_, i) => (
+                <Star key={i} className="h-6 w-6 text-yellow-400 fill-current" />
+              ))}
+            </div>
+            <p className="text-gray-600 italic mb-6 text-lg">"{testimonial.quote}"</p>
+            <p className="text-gray-800 font-semibold text-right">- {testimonial.author}</p>
           </motion.div>
         ))}
       </div>
@@ -179,25 +259,23 @@ const FAQSection = () => {
   ];
 
   return (
-    <section className="py-24 bg-background">
+    <section className="py-12 bg-white">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-12 text-primary animate-fade-in-up">
+        <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
           Frequently Asked Questions
         </h2>
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-2xl mx-auto">
           <Accordion type="single" collapsible className="w-full">
             {faqItems.map((item, index) => (
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className={`animate-fade-in-up animation-delay-${
-                  (index + 1) * 200
-                }`}
+                className="mb-4 border border-gray-200 rounded-lg overflow-hidden"
               >
-                <AccordionTrigger className="text-left text-lg font-semibold">
+                <AccordionTrigger className="text-left text-lg font-semibold p-4 bg-gray-50 hover:bg-gray-100 transition-all duration-300">
                   {item.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
+                <AccordionContent className="text-gray-600 p-4 bg-white">
                   {item.answer}
                 </AccordionContent>
               </AccordionItem>
@@ -208,5 +286,6 @@ const FAQSection = () => {
     </section>
   );
 };
+
 
 export default HomePage;

@@ -21,7 +21,9 @@ export const Navbar: React.FC = () => {
           {/* Desktop menu */}
           <div className="hidden md:flex items-center space-x-4">
             <Button variant="ghost">Home</Button>
-            <Button variant="ghost">Features</Button>
+            <Link to={"/discussions"}>
+            <Button variant="ghost">Questioniore</Button>
+            </Link>
             <Button variant="ghost">About</Button>
             <Link to="/login">
               <Button

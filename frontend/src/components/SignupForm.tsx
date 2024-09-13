@@ -1,5 +1,4 @@
-// SignupForm.tsx
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -12,8 +11,21 @@ import {
 } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { User2Icon } from "lucide-react";
+import { useNavigate } from "react-router-dom"; // Use useNavigate for programmatic navigation
 
 export const SignupForm: React.FC = () => {
+  const [userType, setUserType] = useState<"student-profile" | "teacher-profile" | "business">();
+  const navigate = useNavigate(); // Hook for navigation
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault(); // Prevent form submission reload
+    if (userType) {
+      navigate(`/${userType}`); // Redirect to the selected user profile page
+    } else {
+      alert("Please select a user type.");
+    }
+  };
+
   return (
     <Card className="w-full max-w-md shadow-lg bg-white">
       <CardHeader className="space-y-1">
@@ -31,7 +43,7 @@ export const SignupForm: React.FC = () => {
         </p>
       </CardHeader>
       <CardContent>
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={handleSubmit}>
           <Input
             type="text"
             placeholder="Full Name"
@@ -52,13 +64,13 @@ export const SignupForm: React.FC = () => {
             placeholder="Confirm Password"
             className="border-gray-300"
           />
-          <Select>
+          <Select onValueChange={(value) => setUserType(value as "student-profile" | "teacher-profile" | "business")}>
             <SelectTrigger className="w-full border-gray-300">
               <SelectValue placeholder="I am a..." />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="student">Student</SelectItem>
-              <SelectItem value="teacher">Teacher</SelectItem>
+              <SelectItem value="student-profile">Student</SelectItem>
+              <SelectItem value="teacher-profile">Teacher</SelectItem>
               <SelectItem value="business">Business</SelectItem>
             </SelectContent>
           </Select>

@@ -68,7 +68,7 @@ const HeroSection = () => {
                         </Link>
                     </div>
                   </div>
-                  <div className="md:w-1/2 flex justify-end relative">
+                  {/* <div className="md:w-1/2 flex justify-end relative">
                     <div className="relative w-80 h-80 flex justify-center items-center">
                       <div className="absolute top-0 right-0 transform translate-x-6 -translate-y-6">
                         {slide.icon1}
@@ -80,7 +80,7 @@ const HeroSection = () => {
                         {slide.icon3}
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </CarouselItem>
             ))}
