@@ -22,7 +22,7 @@ export const Navbar: React.FC = () => {
           <div className="hidden md:flex items-center space-x-4">
             <Button variant="ghost">Home</Button>
             <Link to={"/discussions"}>
-            <Button variant="ghost">Questioniore</Button>
+            <Button variant="ghost" className="text-center">Questioniore</Button>
             </Link>
             <Button variant="ghost">About</Button>
             <Link to="/login">
@@ -42,18 +42,20 @@ export const Navbar: React.FC = () => {
               <Button variant="ghost" className="w-full text-left">
                 Home
               </Button>
-              <Button variant="ghost" className="w-full text-left">
-                Features
-              </Button>
+             <Link to={"/discussions"}>
+            <Button variant="ghost">Questioniore</Button>
+            </Link>
               <Button variant="ghost" className="w-full text-left">
                 About
               </Button>
+              <Link to={"login"}>
               <Button
                 variant="default"
                 className="w-full bg-primary hover:bg-primary/80 text-primary-foreground"
-              >
+                >
                 Login
               </Button>
+                </Link>
             </div>
           </div>
         )}
