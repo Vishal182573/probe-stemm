@@ -8,7 +8,7 @@ export const Footer: React.FC = () => {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0 text-center md:text-left">
             <p className="font-semibold mb-2">Follow us</p>
-            <p>Copyright © 2024 Probe Stemm. All rights reserved.</p>
+            <p>Copyright © 2024 Probe STEM. All rights reserved.</p>
           </div>
           <div className="flex flex-wrap justify-center md:justify-end space-x-4 mb-4 md:mb-0">
             {["Privacy Policy", "Terms of Use", "Legal", "Site Map"].map(

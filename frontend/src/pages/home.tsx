@@ -4,7 +4,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Rocket, Brain, Zap, GraduationCap, ChevronDown, Star } from "lucide-react";
+import {
+  Rocket,
+  Brain,
+  Zap,
+  GraduationCap,
+  ChevronDown,
+  Star,
+} from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -15,7 +22,7 @@ import NotificationsComponent from "@/components/Notifications";
 
 const HomePage = () => {
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
+    <div className="flex flex-col min-h-screen bg-black text-white">
       <Navbar />
       <main className="flex-grow">
         <HeroSection />
@@ -56,30 +63,31 @@ const HeroSection = () => {
           style={{ backgroundImage: `url(${images[currentImageIndex]})` }}
         />
       </AnimatePresence>
-      
-      <div className="absolute inset-0 bg-black bg-opacity-60 z-10" />
+
+      <div className="absolute inset-0 bg-black bg-opacity-70 z-10" />
 
       <div className="relative z-20 text-center px-4 max-w-5xl mx-auto">
-        <motion.h1 
+        <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-6xl md:text-8xl font-extrabold mb-6 text-white"
         >
-          Revolutionize Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">STEM</span> Learning
+          Revolutionize Your <span className="text-blue-400">STEM</span>{" "}
+          Learning
         </motion.h1>
-        
-        <motion.p 
+
+        <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-xl md:text-2xl mb-10 text-gray-200 max-w-3xl mx-auto"
+          className="text-xl md:text-2xl mb-10 text-blue-200 max-w-3xl mx-auto"
         >
-          Probe Stemm: Where innovation meets education. Dive into a world of
+          Probe STEM: Where innovation meets education. Dive into a world of
           interactive learning, cutting-edge technology, and global
           collaboration.
         </motion.p>
-        
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -89,7 +97,7 @@ const HeroSection = () => {
           <Link to="/discussions">
             <Button
               size="lg"
-              className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg text-lg"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-md transition-all duration-300 text-lg"
             >
               Get Started
               <Rocket className="ml-2 h-6 w-6" />
@@ -98,19 +106,19 @@ const HeroSection = () => {
           <Button
             size="lg"
             variant="outline"
-            className="bg-transparent border-2 border-white text-white font-bold py-4 px-8 rounded-full transition-all duration-300 hover:bg-white hover:text-purple-600 text-lg"
+            className="bg-transparent border-2 border-blue-400 text-blue-400 font-bold py-4 px-8 rounded-md transition-all duration-300 hover:bg-blue-400 hover:text-black text-lg"
           >
             Learn More
           </Button>
         </motion.div>
       </div>
 
-      <motion.div 
+      <motion.div
         className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20"
         animate={{ y: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 1.5 }}
       >
-        <ChevronDown className="text-white h-10 w-10" />
+        <ChevronDown className="text-blue-400 h-10 w-10" />
       </motion.div>
     </section>
   );
@@ -119,19 +127,19 @@ const HeroSection = () => {
 const FeaturesSection = () => {
   const features = [
     {
-      icon: <Brain className="h-16 w-16 text-blue-500" />,
+      icon: <Brain className="h-16 w-16 text-blue-400" />,
       title: "AI-Powered Learning",
       description:
         "Personalized learning paths adapted to your unique needs and pace.",
     },
     {
-      icon: <Zap className="h-16 w-16 text-purple-500" />,
+      icon: <Zap className="h-16 w-16 text-blue-400" />,
       title: "Real-time Collaboration",
       description:
         "Connect with peers and mentors globally for dynamic project work.",
     },
     {
-      icon: <GraduationCap className="h-16 w-16 text-pink-500" />,
+      icon: <GraduationCap className="h-16 w-16 text-blue-400" />,
       title: "Industry-Aligned Curriculum",
       description:
         "Stay ahead with courses designed in partnership with leading tech companies.",
@@ -139,25 +147,25 @@ const FeaturesSection = () => {
   ];
 
   return (
-    <section className="py-24 px-4 bg-white">
-      <h2 className="text-5xl font-bold text-center mb-16 text-gray-800">
-        Why Choose <span className="text-purple-600">Probe Stemm</span>?
+    <section className="py-24 px-4 bg-gray-900">
+      <h2 className="text-5xl font-bold text-center mb-16 text-blue-400">
+        Why Choose Probe STEM?
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-7xl mx-auto">
         {features.map((feature, index) => (
           <motion.div
             key={index}
-            className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-xl shadow-xl transform hover:scale-105 transition-all duration-300"
+            className="bg-black p-8 rounded-xl shadow-xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
           >
             <div className="flex flex-col items-center text-center">
               {feature.icon}
-              <h3 className="text-2xl font-semibold mt-6 mb-4">
+              <h3 className="text-2xl font-semibold mt-6 mb-4 text-blue-300">
                 {feature.title}
               </h3>
-              <p className="text-gray-600 text-lg">{feature.description}</p>
+              <p className="text-gray-400 text-lg">{feature.description}</p>
             </div>
           </motion.div>
         ))}
@@ -168,9 +176,9 @@ const FeaturesSection = () => {
 
 const NotificationsSection = () => {
   return (
-    <section className="py-20 bg-gradient-to-r from-purple-100 to-pink-100">
+    <section className="py-20 bg-black">
       <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">
+        <h2 className="text-4xl font-bold text-center mb-12 text-blue-400">
           Stay Updated
         </h2>
         <NotificationsComponent />
@@ -183,45 +191,52 @@ const TestimonialsSection = () => {
   const testimonials = [
     {
       quote:
-        "Probe Stemm transformed my learning experience. The interactive projects and global network are unparalleled.",
+        "Probe STEM transformed my learning experience. The interactive projects and global network are unparalleled.",
       author: "Sarah K., Computer Science Student",
       rating: 5,
     },
     {
       quote:
-        "As an educator, Probe Stemm provides me with cutting-edge tools to engage my students like never before.",
+        "As an educator, Probe STEM provides me with cutting-edge tools to engage my students like never before.",
       author: "Dr. James L., University Professor",
       rating: 5,
     },
     {
       quote:
-        "The talent we've recruited through Probe Stemm has been exceptional. It's our go-to platform for finding innovators.",
+        "The talent we've recruited through Probe STEM has been exceptional. It's our go-to platform for finding innovators.",
       author: "Emily R., Tech Startup Founder",
       rating: 5,
     },
   ];
 
   return (
-    <section className="py-24 px-4 bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100">
-      <h2 className="text-5xl font-bold text-center mb-16 text-gray-800">
+    <section className="py-24 px-4 bg-gray-900">
+      <h2 className="text-5xl font-bold text-center mb-16 text-blue-400">
         What Our Community Says
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-7xl mx-auto">
         {testimonials.map((testimonial, index) => (
           <motion.div
             key={index}
-            className="bg-white p-8 rounded-xl shadow-xl"
+            className="bg-black p-8 rounded-xl shadow-xl"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
           >
             <div className="flex justify-center mb-4">
               {[...Array(testimonial.rating)].map((_, i) => (
-                <Star key={i} className="h-6 w-6 text-yellow-400 fill-current" />
+                <Star
+                  key={i}
+                  className="h-6 w-6 text-yellow-400 fill-current"
+                />
               ))}
             </div>
-            <p className="text-gray-600 italic mb-6 text-lg">"{testimonial.quote}"</p>
-            <p className="text-gray-800 font-semibold text-right">- {testimonial.author}</p>
+            <p className="text-gray-300 italic mb-6 text-lg">
+              "{testimonial.quote}"
+            </p>
+            <p className="text-blue-400 font-semibold text-right">
+              - {testimonial.author}
+            </p>
           </motion.div>
         ))}
       </div>
@@ -232,9 +247,9 @@ const TestimonialsSection = () => {
 const FAQSection = () => {
   const faqItems = [
     {
-      question: "What is Probe Stemm?",
+      question: "What is Probe STEM?",
       answer:
-        "Probe Stemm is an innovative online platform that revolutionizes STEM education through interactive learning, cutting-edge technology, and global collaboration.",
+        "Probe STEM is an innovative online platform that revolutionizes STEM education through interactive learning, cutting-edge technology, and global collaboration.",
     },
     {
       question: "How does AI-powered learning work?",
@@ -244,7 +259,7 @@ const FAQSection = () => {
     {
       question: "Can I collaborate with other students globally?",
       answer:
-        "Absolutely! Probe Stemm offers real-time collaboration features that allow you to work on projects with peers from around the world, fostering a truly global learning community.",
+        "Absolutely! Probe STEM offers real-time collaboration features that allow you to work on projects with peers from around the world, fostering a truly global learning community.",
     },
     {
       question: "Are the courses recognized by the industry?",
@@ -252,16 +267,16 @@ const FAQSection = () => {
         "Yes, our curriculum is designed in partnership with leading tech companies to ensure that you're learning the most relevant and in-demand skills in the STEM field.",
     },
     {
-      question: "How do I get started with Probe Stemm?",
+      question: "How do I get started with Probe STEM?",
       answer:
         "Getting started is easy! Simply click the 'Get Started' button on our homepage, create an account, and you'll be guided through the process of selecting your first courses and projects.",
     },
   ];
 
   return (
-    <section className="py-12 bg-white">
+    <section className="py-12 bg-black">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
+        <h2 className="text-3xl font-bold text-center mb-8 text-blue-400">
           Frequently Asked Questions
         </h2>
         <div className="max-w-2xl mx-auto">
@@ -270,12 +285,12 @@ const FAQSection = () => {
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="mb-4 border border-gray-200 rounded-lg overflow-hidden"
+                className="mb-4 border border-blue-800 rounded-lg overflow-hidden"
               >
-                <AccordionTrigger className="text-left text-lg font-semibold p-4 bg-gray-50 hover:bg-gray-100 transition-all duration-300">
+                <AccordionTrigger className="text-left text-lg font-semibold p-4 bg-gray-900 hover:bg-gray-800 transition-all duration-300 text-blue-300">
                   {item.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 p-4 bg-white">
+                <AccordionContent className="text-gray-300 p-4 bg-black">
                   {item.answer}
                 </AccordionContent>
               </AccordionItem>
@@ -286,6 +301,5 @@ const FAQSection = () => {
     </section>
   );
 };
-
 
 export default HomePage;

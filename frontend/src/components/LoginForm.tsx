@@ -1,4 +1,3 @@
-// LoginForm.tsx
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,16 +6,16 @@ import { LogInIcon } from "lucide-react";
 
 export const LoginForm: React.FC = () => {
   return (
-    <Card className="w-full max-w-md shadow-lg bg-white">
+    <Card className="w-full max-w-md shadow-lg bg-card">
       <CardHeader className="space-y-1">
-        <CardTitle className="text-2xl font-bold text-blue-700">
+        <CardTitle className="text-2xl font-bold text-primary">
           Welcome Back
         </CardTitle>
-        <p className="text-sm text-gray-600">
-          New to Probe Stemm?{" "}
+        <p className="text-sm text-muted-foreground">
+          New to Probe STEM?{" "}
           <a
             href="/signup"
-            className="text-blue-600 hover:underline font-medium"
+            className="text-primary hover:underline font-medium"
           >
             Sign up
           </a>
@@ -27,21 +26,21 @@ export const LoginForm: React.FC = () => {
           <Input
             type="email"
             placeholder="Email Address"
-            className="border-gray-300"
+            className="bg-background"
           />
           <Input
             type="password"
             placeholder="Password"
-            className="border-gray-300"
+            className="bg-background"
           />
           <div className="flex justify-between items-center">
-            <a href="#" className="text-sm text-blue-600 hover:underline">
+            <a href="#" className="text-sm text-primary hover:underline">
               Forgot Password?
             </a>
           </div>
           <Button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+            className="w-full bg-primary hover:bg-primary/80 text-primary-foreground"
           >
             Log In
             <LogInIcon className="ml-2 h-4 w-4" />

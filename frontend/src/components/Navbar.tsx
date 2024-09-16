@@ -1,3 +1,5 @@
+// components/Navbar.tsx
+
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
@@ -8,21 +10,25 @@ export const Navbar: React.FC = () => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <nav className="bg-background/95 backdrop-blur-sm shadow-md top-0 sticky z-50">
+    <nav className="bg-background/95 backdrop-blur-sm shadow-md sticky top-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           <Link to="/">
-            <h1 className="text-2xl font-bold text-primary">Probe Stemm</h1>
+            <h1 className="text-2xl font-bold text-primary">Probe STEM</h1>
           </Link>
-          {/* Mobile menu button */}
           <button className="md:hidden text-foreground" onClick={toggleMenu}>
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
-          {/* Desktop menu */}
           <div className="hidden md:flex items-center space-x-4">
             <Button variant="ghost">Home</Button>
-            <Link to={"/discussions"}>
-            <Button variant="ghost" className="text-center">Questioniore</Button>
+            <Link to="/discussions">
+              <Button variant="ghost">Questionnaire</Button>
+            </Link>
+            <Link to="/blogs">
+              <Button variant="ghost">Blogs</Button>
+            </Link>
+            <Link to="/projects">
+              <Button variant="ghost">Projects</Button>
             </Link>
             <Button variant="ghost">About</Button>
             <Link to="/login">
@@ -35,27 +41,39 @@ export const Navbar: React.FC = () => {
             </Link>
           </div>
         </div>
-        {/* Mobile menu */}
         {isMenuOpen && (
           <div className="md:hidden py-4">
             <div className="flex flex-col space-y-2">
               <Button variant="ghost" className="w-full text-left">
                 Home
               </Button>
-             <Link to={"/discussions"}>
-            <Button variant="ghost">Questioniore</Button>
-            </Link>
+              <Link to="/discussions">
+                <Button variant="ghost" className="w-full text-left">
+                  Questionnaire
+                </Button>
+              </Link>
+              <Link to="/blogs">
+                <Button variant="ghost" className="w-full text-left">
+                  Blogs
+                </Button>
+              </Link>
+
+              <Link to="/projects">
+                <Button variant="ghost" className="w-full text-left">
+                  Projects
+                </Button>
+              </Link>
               <Button variant="ghost" className="w-full text-left">
                 About
               </Button>
-              <Link to={"login"}>
-              <Button
-                variant="default"
-                className="w-full bg-primary hover:bg-primary/80 text-primary-foreground"
+              <Link to="/login">
+                <Button
+                  variant="default"
+                  className="w-full bg-primary hover:bg-primary/80 text-primary-foreground"
                 >
-                Login
-              </Button>
-                </Link>
+                  Login
+                </Button>
+              </Link>
             </div>
           </div>
         )}

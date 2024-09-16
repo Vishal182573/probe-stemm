@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,10 +10,19 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui/card";
-import { FaSearch, FaPlus, FaSort, FaFilter, FaArrowUp, FaClock, FaComment, FaUser } from "react-icons/fa";
-import { useNavigate } from 'react-router-dom';
-import { Navbar } from '@/components/Navbar';
-import { Footer } from '@/components/Footer';
+import {
+  FaSearch,
+  FaPlus,
+  FaSort,
+  FaFilter,
+  FaArrowUp,
+  FaClock,
+  FaComment,
+  FaUser,
+} from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 
 interface Question {
   id: string;
@@ -25,16 +34,42 @@ interface Question {
   commentCount: number;
 }
 
+const categories: { [key: string]: string[] } = {
+  Science: [
+    "Physics",
+    "Chemistry",
+    "Biology",
+    "Earth Sciences",
+    "Space Science",
+  ],
+  Technology: ["Computer Science", "Engineering"],
+  Engineering: [
+    "Electrical Engineering",
+    "Mechanical Engineering",
+    "Civil Engineering",
+    "Chemical Engineering",
+  ],
+  Mathematics: ["Pure Mathematics", "Applied Mathematics"],
+  "Engineering Technology": [
+    "Data Engineering",
+    "Robotics",
+    "Biotechnology",
+    "Environmental Technology",
+    "Space Technology",
+    "Pharmaceutical Engineering",
+  ],
+};
+
 const DiscussionForum: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("recently");
   const [status, setStatus] = useState("all");
+  const [category, setCategory] = useState<string | undefined>(undefined);
+  const [subcategory, setSubcategory] = useState<string | undefined>(undefined);
   const [questions, setQuestions] = useState<Question[]>([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch questions from API
-    // For now, we'll use mock data
     setQuestions([
       {
         id: "1",
@@ -56,13 +91,13 @@ const DiscussionForum: React.FC = () => {
   return (
     <>
       <Navbar />
-      <motion.div 
-        initial={{ opacity: 0 }} 
-        animate={{ opacity: 1 }} 
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         className="container mx-auto p-4 sm:p-6 md:p-8 min-h-screen"
       >
-        <motion.h1 
+        <motion.h1
           initial={{ y: -50 }}
           animate={{ y: 0 }}
           className="text-2xl md:text-4xl font-bold mb-6 md:mb-8 text-center"
@@ -70,7 +105,7 @@ const DiscussionForum: React.FC = () => {
           Discussion Forum
         </motion.h1>
 
-        <motion.div 
+        <motion.div
           className="flex flex-col sm:flex-row items-center sm:space-x-4 mb-6 md:mb-8"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -86,9 +121,9 @@ const DiscussionForum: React.FC = () => {
               className="pl-10 pr-4 py-2 w-full"
             />
           </div>
-          <Button 
-            onClick={() => navigate('/ask-question')}
-            className="bg-blue-600 hover:bg-blue-700 text-white flex items-center mb-4 sm:mb-0"
+          <Button
+            onClick={() => navigate("/ask-question")}
+            className="bg-primary hover:bg-accent text-white flex items-center mb-4 sm:mb-0"
           >
             <FaPlus className="mr-2" /> Ask Question
           </Button>
@@ -117,6 +152,54 @@ const DiscussionForum: React.FC = () => {
           </div>
         </motion.div>
 
+        <motion.div
+          className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-6"
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.3 }}
+        >
+          <div className="flex-1">
+            <Select
+              value={category}
+              onValueChange={(value) => {
+                setCategory(value);
+                setSubcategory("");
+              }}
+            >
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select a category" />
+              </SelectTrigger>
+              <SelectContent>
+                {Object.keys(categories).map((cat) => (
+                  <SelectItem key={cat} value={cat}>
+                    {cat}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="flex-1">
+            <Select
+              value={subcategory}
+              onValueChange={setSubcategory}
+              disabled={!category}
+            >
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select a subcategory" />
+              </SelectTrigger>
+              <SelectContent>
+                {category &&
+                  categories[category].map((subcat) => (
+                    <SelectItem key={subcat} value={subcat}>
+                      {subcat}
+                    </SelectItem>
+                  ))}
+              </SelectContent>
+            </Select>
+          </div>
+        </motion.div>
+
         <AnimatePresence>
           {questions.map((question, index) => (
             <motion.div
@@ -126,20 +209,24 @@ const DiscussionForum: React.FC = () => {
               exit={{ opacity: 0, y: -50 }}
               transition={{ delay: index * 0.1 }}
             >
-              <Card 
+              <Card
                 className="mb-4 hover:shadow-lg transition-shadow duration-300 cursor-pointer"
                 onClick={() => handleQuestionClick(question.id)}
               >
                 <CardContent className="p-4 sm:p-6 flex flex-col sm:flex-row items-start space-x-4">
                   <div className="flex flex-col items-center mb-4 sm:mb-0">
                     <Button variant="outline" className="px-2 py-1 mb-2">
-                      <FaArrowUp className="text-blue-600" />
+                      <FaArrowUp className="text-primary" />
                     </Button>
-                    <span className="text-sm font-medium">{question.votes}</span>
+                    <span className="text-sm font-medium">
+                      {question.votes}
+                    </span>
                   </div>
                   <div className="flex-grow">
-                    <h3 className="text-lg sm:text-xl font-semibold mb-2">{question.title}</h3>
-                    <div className="flex flex-col sm:flex-row items-start text-sm text-gray-500 space-y-1 sm:space-y-0 sm:space-x-2">
+                    <h3 className="text-lg sm:text-xl font-semibold mb-2">
+                      {question.title}
+                    </h3>
+                    <div className="flex flex-col sm:flex-row items-start text-sm text-muted-foreground space-y-1 sm:space-y-0 sm:space-x-2">
                       <div className="flex items-center">
                         <FaUser className="mr-1" />
                         <span>{question.author}</span>
@@ -148,8 +235,14 @@ const DiscussionForum: React.FC = () => {
                         <FaClock className="mr-1" />
                         <span>{question.time}</span>
                       </div>
-                      <div className={`flex items-center ${question.answered ? "text-green-500" : "text-blue-600"}`}>
-                        <span>{question.answered ? "Answered" : "Unanswered"}</span>
+                      <div
+                        className={`flex items-center ${
+                          question.answered ? "text-green-500" : "text-primary"
+                        }`}
+                      >
+                        <span>
+                          {question.answered ? "Answered" : "Unanswered"}
+                        </span>
                       </div>
                       <div className="flex items-center">
                         <FaComment className="mr-1" />

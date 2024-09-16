@@ -11,33 +11,32 @@ import {
 } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { User2Icon } from "lucide-react";
-import { useNavigate } from "react-router-dom"; // Use useNavigate for programmatic navigation
+import { useNavigate } from "react-router-dom";
 
 export const SignupForm: React.FC = () => {
-  const [userType, setUserType] = useState<"student-profile" | "teacher-profile" | "business">();
-  const navigate = useNavigate(); // Hook for navigation
+  const [userType, setUserType] = useState<
+    "student-profile" | "teacher-profile" | "business"
+  >();
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault(); // Prevent form submission reload
+    e.preventDefault();
     if (userType) {
-      navigate(`/${userType}`); // Redirect to the selected user profile page
+      navigate(`/${userType}`);
     } else {
       alert("Please select a user type.");
     }
   };
 
   return (
-    <Card className="w-full max-w-md shadow-lg bg-white">
+    <Card className="w-full max-w-md shadow-lg bg-card">
       <CardHeader className="space-y-1">
-        <CardTitle className="text-2xl font-bold text-blue-700">
-          Join Probe Stemm
+        <CardTitle className="text-2xl font-bold text-primary">
+          Join Probe STEM
         </CardTitle>
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-muted-foreground">
           Already a member?{" "}
-          <a
-            href="/login"
-            className="text-blue-600 hover:underline font-medium"
-          >
+          <a href="/login" className="text-primary hover:underline font-medium">
             Log in
           </a>
         </p>
@@ -47,25 +46,31 @@ export const SignupForm: React.FC = () => {
           <Input
             type="text"
             placeholder="Full Name"
-            className="border-gray-300"
+            className="bg-background"
           />
           <Input
             type="email"
             placeholder="Email Address"
-            className="border-gray-300"
+            className="bg-background"
           />
           <Input
             type="password"
             placeholder="Password"
-            className="border-gray-300"
+            className="bg-background"
           />
           <Input
             type="password"
             placeholder="Confirm Password"
-            className="border-gray-300"
+            className="bg-background"
           />
-          <Select onValueChange={(value) => setUserType(value as "student-profile" | "teacher-profile" | "business")}>
-            <SelectTrigger className="w-full border-gray-300">
+          <Select
+            onValueChange={(value) =>
+              setUserType(
+                value as "student-profile" | "teacher-profile" | "business"
+              )
+            }
+          >
+            <SelectTrigger className="w-full bg-background">
               <SelectValue placeholder="I am a..." />
             </SelectTrigger>
             <SelectContent>
@@ -76,20 +81,20 @@ export const SignupForm: React.FC = () => {
           </Select>
           <div className="flex items-center space-x-2">
             <Checkbox id="terms" />
-            <label htmlFor="terms" className="text-sm text-gray-600">
+            <label htmlFor="terms" className="text-sm text-muted-foreground">
               I agree to the{" "}
-              <a href="#" className="text-blue-600 hover:underline">
+              <a href="#" className="text-primary hover:underline">
                 Terms of Service
               </a>{" "}
               and{" "}
-              <a href="#" className="text-blue-600 hover:underline">
+              <a href="#" className="text-primary hover:underline">
                 Privacy Policy
               </a>
             </label>
           </div>
           <Button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+            className="w-full bg-primary hover:bg-primary/80 text-primary-foreground"
           >
             Sign Up
             <User2Icon className="ml-2 h-4 w-4" />
