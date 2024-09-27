@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LogInIcon } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export const LoginForm: React.FC = () => {
   return (
@@ -13,12 +14,11 @@ export const LoginForm: React.FC = () => {
         </CardTitle>
         <p className="text-sm text-muted-foreground">
           New to Probe STEM?{" "}
-          <a
-            href="/signup"
-            className="text-primary hover:underline font-medium"
-          >
-            Sign up
-          </a>
+          <Link to="/signup">
+            <Button variant="link" className="text-primary text-sm p-0">
+              Sign Up
+            </Button>
+          </Link>
         </p>
       </CardHeader>
       <CardContent>
