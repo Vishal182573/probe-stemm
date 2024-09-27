@@ -12,7 +12,16 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Rocket, Calendar, User, Clock, XCircle } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Rocket,
+  Calendar,
+  User,
+  Clock,
+  XCircle,
+  UserCircle,
+  GraduationCap,
+} from "lucide-react";
 
 interface Project {
   id: number;
@@ -66,7 +75,49 @@ const ProjectsPage = () => {
       <Navbar />
       <main className="flex-grow">
         <ProjectsHero />
-        <ProjectsList projects={projects} />
+        <Tabs defaultValue="professors" className="max-w-6xl mx-auto px-4 ">
+          <TabsList className="mb-8 ">
+            <TabsTrigger
+              className="text-lg
+              font-semibold
+              px-4
+              py-2
+              rounded-md
+              bg-gray-800
+              hover:bg-gray-700
+              cursor-pointer
+              transition-all
+              duration-300"
+              value="professors"
+            >
+              {<GraduationCap className="mr-2 h-5 w-5" />}
+              For Professors
+            </TabsTrigger>
+
+            <TabsTrigger
+              className="text-lg
+              font-semibold
+              px-4
+              py-2
+              rounded-md
+              bg-gray-800
+              hover:bg-gray-700
+              cursor-pointer
+              transition-all
+              duration-300"
+              value="students"
+            >
+              {<UserCircle className="mr-2 h-5 w-5" />}
+              For Students
+            </TabsTrigger>
+          </TabsList>
+          <TabsContent value="professors">
+            <ProfessorProjectsList projects={projects} />
+          </TabsContent>
+          <TabsContent value="students">
+            <StudentProjectsList projects={projects} />
+          </TabsContent>
+        </Tabs>
       </main>
       <Footer />
     </div>
@@ -113,19 +164,23 @@ const ProjectsHero = () => {
   );
 };
 
-const ProjectsList = ({ projects }: { projects: Project[] }) => {
+const ProfessorProjectsList = ({ projects }: { projects: Project[] }) => {
   return (
-    <section className="py-20 px-4">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <section className="py-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project, index) => (
-          <ProjectCard key={project.id} project={project} index={index} />
+          <ProfessorProjectCard
+            key={project.id}
+            project={project}
+            index={index}
+          />
         ))}
       </div>
     </section>
   );
 };
 
-const ProjectCard = ({
+const ProfessorProjectCard = ({
   project,
   index,
 }: {
@@ -217,6 +272,95 @@ const ProjectCard = ({
                 <XCircle className="ml-2 h-4 w-4" />
               </>
             )}
+          </Button>
+        </CardFooter>
+      </Card>
+    </motion.div>
+  );
+};
+
+const StudentProjectsList = ({ projects }: { projects: Project[] }) => {
+  return (
+    <section className="py-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {projects.map((project, index) => (
+          <StudentProjectCard
+            key={project.id}
+            project={project}
+            index={index}
+          />
+        ))}
+      </div>
+    </section>
+  );
+};
+
+const StudentProjectCard = ({
+  project,
+  index,
+}: {
+  project: Project;
+  index: number;
+}) => {
+  const difficultyColor = {
+    Beginner: "bg-green-500",
+    Intermediate: "bg-yellow-500",
+    Advanced: "bg-red-500",
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+    >
+      <Card className="bg-gray-900 border-blue-800 overflow-hidden">
+        <CardHeader className="bg-gradient-to-r from-blue-800 to-purple-800 pb-2">
+          <div className="flex justify-between items-start">
+            <CardTitle className="text-2xl font-bold text-white">
+              {project.title}
+            </CardTitle>
+            <Badge
+              className={`${difficultyColor[project.difficulty]} text-white`}
+            >
+              {project.difficulty}
+            </Badge>
+          </div>
+          <CardDescription className="text-gray-200 mt-2">
+            {project.description}
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="pt-4">
+          <div className="space-y-2">
+            <div className="flex items-center text-gray-300">
+              <Calendar className="mr-2 h-4 w-4" />
+              <span>Timeline: {project.timeline}</span>
+            </div>
+            <div className="flex items-center text-gray-300">
+              <User className="mr-2 h-4 w-4" />
+              <span>
+                {project.professor
+                  ? `Professor: ${project.professor}`
+                  : "Professor: Not Assigned"}
+              </span>
+            </div>
+          </div>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {project.tags.map((tag, i) => (
+              <Badge
+                key={i}
+                variant="secondary"
+                className="bg-blue-600 text-white"
+              >
+                {tag}
+              </Badge>
+            ))}
+          </div>
+        </CardContent>
+        <CardFooter>
+          <Button className="w-full bg-blue-600 hover:bg-blue-700">
+            Apply Now
+            <Rocket className="ml-2 h-4 w-4" />
           </Button>
         </CardFooter>
       </Card>

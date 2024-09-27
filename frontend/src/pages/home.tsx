@@ -339,27 +339,36 @@ const FAQSection = () => {
     {
       question: "What is Probe STEM?",
       answer:
-        "Probe STEM is an innovative online platform that revolutionizes STEM education through interactive learning, cutting-edge technology, and global collaboration.",
+        "Probe STEM is an online research platform designed to facilitate and enhance collaborative efforts across a diverse array of disciplines in Science, Technology, Engineering, and Mathematics (STEM). The platform provides resources that enable students, educators, and professionals to connect, share knowledge, and work together on research projects, fostering innovation and interdisciplinary collaboration.",
     },
     {
-      question: "How does AI-powered learning work?",
+      question: "Who can join Probe STEM?",
       answer:
-        "Our AI algorithms analyze your learning style, pace, and goals to create a personalized learning path. This ensures that you're always challenged at the right level and making optimal progress.",
+        "Probe STEM is open to a wide range of participants, including: 1) Researchers: Professionals and academicians working in STEM fields. 2) Educators: Teachers looking to collaborate on educational projects. 3) Students: Those wishing to participate in research projects, gain mentorship, and build professional networks. 4) Industry Professionals: Research industries interested in finding research mentorship or collaborating with academic researchers. 5) Institutions and Organizations: Academic institutions, research organizations, and companies that want to promote collaborative research, support innovation, and connect with a broader network of experts.",
     },
     {
-      question: "Can I collaborate with other students globally?",
+      question: "How to use Probe STEM?",
       answer:
-        "Absolutely! Probe STEM offers real-time collaboration features that allow you to work on projects with peers from around the world, fostering a truly global learning community.",
+        "Probe STEM provides these essential features: 1) Mentorship Connection: Allows students to connect with mentors for direct interaction and guidance. 2) Discussion forum: Promotes in-depth discussions and Q&A sessions on various topics. 3) Global Research Showcase: Offers a platform for researchers and students to present their work globally. 4) Webinars and online courses: Scheduling research talks or online courses managed by the admin. 5) Industry Collaborations: Links industry partners with professors seeking to advance their research projects.",
     },
     {
-      question: "Are the courses recognized by the industry?",
-      answer:
-        "Yes, our curriculum is designed in partnership with leading tech companies to ensure that you're learning the most relevant and in-demand skills in the STEM field.",
+      question: "Is there any cost to use Probe STEM?",
+      answer: "Probe STEM is completely free to use.",
     },
     {
-      question: "How do I get started with Probe STEM?",
+      question: "How can I find a project?",
       answer:
-        "Getting started is easy! Simply click the 'Get Started' button on our homepage, create an account, and you'll be guided through the process of selecting your first courses and projects.",
+        "For students: Connect with the relevant faculty when they post a project. For faculty: Apply for projects through the online form available under the Industrial Collaboration section when a project is posted by the industry.",
+    },
+    {
+      question: "How can I get a project?",
+      answer:
+        "For students: The faculty has the discretion to decide whether to take you on for a project. For faculty: Industry will do the direct recruitment through Probe STEM.",
+    },
+    {
+      question: "How is Probe STEM useful to me?",
+      answer:
+        "Probe STEM is useful if: 1) You're a student with a research idea you'd like to discuss with an experienced researcher. 2) You're a faculty member seeking a consultancy project with industry partners. 3) You're an institution looking for a platform to showcase your research findings. If you're looking for research interaction in any capacity, Probe STEM is the right place for you.",
     },
   ];
 
