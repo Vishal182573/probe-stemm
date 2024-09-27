@@ -20,9 +20,16 @@ export const Navbar: React.FC = () => {
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="ghost">Home</Button>
+            <Link to="/">
+              <Button variant="ghost">Home</Button>
+            </Link>
+
             <Link to="/discussions">
               <Button variant="ghost">Questionnaire</Button>
+            </Link>
+
+            <Link to="/webinars">
+              <Button variant="ghost">Webinars</Button>
             </Link>
             <Link to="/blogs">
               <Button variant="ghost">Blogs</Button>
@@ -30,7 +37,11 @@ export const Navbar: React.FC = () => {
             <Link to="/projects">
               <Button variant="ghost">Projects</Button>
             </Link>
-            <Button variant="ghost">About</Button>
+
+            <Link to="/about">
+              <Button variant="ghost">About</Button>
+            </Link>
+
             <Link to="/login">
               <Button
                 variant="default"
@@ -49,7 +60,7 @@ export const Navbar: React.FC = () => {
               </Button>
               <Link to="/discussions">
                 <Button variant="ghost" className="w-full text-left">
-                Questionnaire
+                  Questionnaire
                 </Button>
               </Link>
               <Link to="/blogs">
@@ -63,9 +74,17 @@ export const Navbar: React.FC = () => {
                   Projects
                 </Button>
               </Link>
-              <Button variant="ghost" className="w-full text-left">
-                About
-              </Button>
+              <Link to="/webinars">
+                <Button variant="ghost" className="w-full text-left">
+                  Webinars
+                </Button>
+              </Link>
+              <Link to="/about">
+                <Button variant="ghost" className="w-full text-left">
+                  About
+                </Button>
+              </Link>
+
               <Link to="/login">
                 <Button
                   variant="default"

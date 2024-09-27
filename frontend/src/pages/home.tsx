@@ -7,8 +7,8 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import {
   Rocket,
-  Brain,
-  Zap,
+  Briefcase,
+  UserCircle,
   GraduationCap,
   ChevronDown,
   Star,
@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/accordion";
 import NotificationsComponent from "@/components/Notifications";
 import ContactForm from "@/components/Feedback";
+import FeaturedQuestionsSection from "@/components/FeaturedQuestionSection";
 
 interface AnimatedSectionProps {
   children: ReactNode;
@@ -35,6 +36,7 @@ const HomePage = () => {
         <HeroSection />
         <FeaturesSection />
         <NotificationsSection />
+        <FeaturedQuestionsSection />
         <TestimonialsSection />
         <FAQSection />
         <ContactForm />
@@ -102,7 +104,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="flex justify-center space-x-4"
         >
-          <Link to="/discussions">
+          <Link to="/login">
             <Button
               size="lg"
               className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-md transition-all duration-300 text-lg"
@@ -111,13 +113,16 @@ const HeroSection = () => {
               <Rocket className="ml-2 h-6 w-6" />
             </Button>
           </Link>
-          <Button
-            size="lg"
-            variant="outline"
-            className="bg-transparent border-2 border-blue-400 text-blue-400 font-bold py-4 px-8 rounded-md transition-all duration-300 hover:bg-blue-400 hover:text-black text-lg"
-          >
-            Learn More
-          </Button>
+
+          <Link to="/about">
+            <Button
+              size="lg"
+              variant="outline"
+              className="bg-transparent border-2 border-blue-400 text-blue-400 font-bold py-4 px-8 rounded-md transition-all duration-300 hover:bg-blue-400 hover:text-black text-lg"
+            >
+              Learn More
+            </Button>
+          </Link>
         </motion.div>
       </div>
 
@@ -132,7 +137,10 @@ const HeroSection = () => {
   );
 };
 
-const AnimatedSection: React.FC<AnimatedSectionProps> = ({ children, direction = "left" }) => {
+const AnimatedSection: React.FC<AnimatedSectionProps> = ({
+  children,
+  direction = "left",
+}) => {
   const controls = useAnimation();
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -164,22 +172,37 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({ children, direction =
 const FeaturesSection = () => {
   const features = [
     {
-      icon: <Brain className="h-16 w-16 text-blue-400" />,
-      title: "AI-Powered Learning",
+      icon: <UserCircle className="h-16 w-16 text-blue-400" />,
+      title: "Student Profile",
       description:
-        "Personalized learning paths adapted to your unique needs and pace.",
-    },
-    {
-      icon: <Zap className="h-16 w-16 text-blue-400" />,
-      title: "Real-time Collaboration",
-      description:
-        "Connect with peers and mentors globally for dynamic project work.",
+        "Showcase your academic journey, research highlights, and achievements. Connect with professors and industry partners for exciting opportunities.",
+      benefits: [
+        "Personalized learning dashboard",
+        "Project collaboration tools",
+        "Research publication tracking",
+      ],
     },
     {
       icon: <GraduationCap className="h-16 w-16 text-blue-400" />,
-      title: "Industry-Aligned Curriculum",
+      title: "Professor Profile",
       description:
-        "Stay ahead with courses designed in partnership with leading tech companies.",
+        "Manage your academic portfolio, showcase research projects, and connect with talented students and industry partners.",
+      benefits: [
+        "Webinar hosting platform",
+        "Research project management",
+        "Student talent pool access",
+      ],
+    },
+    {
+      icon: <Briefcase className="h-16 w-16 text-blue-400" />,
+      title: "Business Profile",
+      description:
+        "Discover top talent, collaborate on cutting-edge research projects, and stay at the forefront of innovation in your industry.",
+      benefits: [
+        "AI-powered talent matching",
+        "Research collaboration tools",
+        "Industry-academia networking",
+      ],
     },
   ];
 
@@ -192,25 +215,34 @@ const FeaturesSection = () => {
       </AnimatedSection>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-7xl mx-auto">
         {features.map((feature, index) => (
-          <AnimatedSection key={index} direction={index % 2 === 0 ? "left" : "right"}>
+          <AnimatedSection
+            key={index}
+            direction={index % 2 === 0 ? "left" : "right"}
+          >
             <motion.div
-              className="bg-black p-8 rounded-xl shadow-xl"
+              className="bg-black p-8 rounded-xl shadow-xl h-full flex flex-col"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="flex flex-col items-center text-center">
-                <motion.div
-                  // initial={{ rotate: 0 }}
-                  // animate={{ rotate: 360 }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                >
-                  {feature.icon}
-                </motion.div>
+              <div className="flex flex-col items-center text-center flex-grow">
+                {feature.icon}
+
                 <h3 className="text-2xl font-semibold mt-6 mb-4 text-blue-300">
                   {feature.title}
                 </h3>
-                <p className="text-gray-400 text-lg">{feature.description}</p>
+                <p className="text-gray-400 text-lg mb-6">
+                  {feature.description}
+                </p>
+                <ul className="text-left w-full">
+                  {feature.benefits.map((benefit, idx) => (
+                    <li key={idx} className="flex items-center mb-2">
+                      <Star className="h-5 w-5 text-blue-400 mr-2" />
+                      <span className="text-gray-300">{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
+              <Button className="mt-6 w-full">Learn More</Button>
             </motion.div>
           </AnimatedSection>
         ))}
@@ -267,7 +299,10 @@ const TestimonialsSection = () => {
       </AnimatedSection>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-7xl mx-auto">
         {testimonials.map((testimonial, index) => (
-          <AnimatedSection key={index} direction={index % 2 === 0 ? "left" : "right"}>
+          <AnimatedSection
+            key={index}
+            direction={index % 2 === 0 ? "left" : "right"}
+          >
             <motion.div
               className="bg-black p-8 rounded-xl shadow-xl"
               whileHover={{ scale: 1.05 }}
@@ -339,7 +374,10 @@ const FAQSection = () => {
         <div className="max-w-2xl mx-auto">
           <Accordion type="single" collapsible className="w-full">
             {faqItems.map((item, index) => (
-              <AnimatedSection key={index} direction={index % 2 === 0 ? "left" : "right"}>
+              <AnimatedSection
+                key={index}
+                direction={index % 2 === 0 ? "left" : "right"}
+              >
                 <AccordionItem
                   value={`item-${index}`}
                   className="mb-4 border border-blue-800 rounded-lg overflow-hidden"

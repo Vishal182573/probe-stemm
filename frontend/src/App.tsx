@@ -17,6 +17,9 @@ import BlogsPage from "./pages/blogs";
 import BlogPostPage from "./pages/blogPost";
 import CreateBlogPost from "./pages/createBlogPost";
 import ProjectsPage from "./pages/projects";
+import NotFoundPage from "./pages/notfound";
+import WebinarPage from "./pages/webinar";
+import AboutUsPage from "./pages/about-us";
 
 function App() {
   return (
@@ -38,6 +41,9 @@ function App() {
         <Route path="/blogs/:id" element={<BlogPostPage />} />
         <Route path="/create-blog" element={<CreateBlogPost />} />
         <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/webinars" element={<WebinarPage />} />
+        <Route path="/about" element={<AboutUsPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
   );
