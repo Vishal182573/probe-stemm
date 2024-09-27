@@ -49,7 +49,7 @@ export const Navbar: React.FC = () => {
               </Button>
               <Link to="/discussions">
                 <Button variant="ghost" className="w-full text-left">
-                  Questionnaire
+                Questionnaire
                 </Button>
               </Link>
               <Link to="/blogs">

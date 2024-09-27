@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, useAnimation, AnimatePresence } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -19,6 +20,12 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import NotificationsComponent from "@/components/Notifications";
+import ContactForm from "@/components/Feedback";
+
+interface AnimatedSectionProps {
+  children: ReactNode;
+  direction?: "left" | "right";
+}
 
 const HomePage = () => {
   return (
@@ -30,6 +37,7 @@ const HomePage = () => {
         <NotificationsSection />
         <TestimonialsSection />
         <FAQSection />
+        <ContactForm />
       </main>
       <Footer />
     </div>
@@ -68,7 +76,7 @@ const HeroSection = () => {
 
       <div className="relative z-20 text-center px-4 max-w-5xl mx-auto">
         <motion.h1
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-6xl md:text-8xl font-extrabold mb-6 text-white"
@@ -78,7 +86,7 @@ const HeroSection = () => {
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-xl md:text-2xl mb-10 text-blue-200 max-w-3xl mx-auto"
@@ -89,8 +97,8 @@ const HeroSection = () => {
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
           className="flex justify-center space-x-4"
         >
@@ -124,6 +132,35 @@ const HeroSection = () => {
   );
 };
 
+const AnimatedSection: React.FC<AnimatedSectionProps> = ({ children, direction = "left" }) => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
+
+  return (
+    <motion.div
+      ref={ref}
+      animate={controls}
+      initial="hidden"
+      variants={{
+        visible: { opacity: 1, x: 0 },
+        hidden: { opacity: 0, x: direction === "left" ? -50 : 50 },
+      }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
 const FeaturesSection = () => {
   const features = [
     {
@@ -148,26 +185,34 @@ const FeaturesSection = () => {
 
   return (
     <section className="py-24 px-4 bg-gray-900">
-      <h2 className="text-5xl font-bold text-center mb-16 text-blue-400">
-        Why Choose Probe STEM?
-      </h2>
+      <AnimatedSection>
+        <h2 className="text-5xl font-bold text-center mb-16 text-blue-400">
+          Why Choose Probe STEM?
+        </h2>
+      </AnimatedSection>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-7xl mx-auto">
         {features.map((feature, index) => (
-          <motion.div
-            key={index}
-            className="bg-black p-8 rounded-xl shadow-xl"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-          >
-            <div className="flex flex-col items-center text-center">
-              {feature.icon}
-              <h3 className="text-2xl font-semibold mt-6 mb-4 text-blue-300">
-                {feature.title}
-              </h3>
-              <p className="text-gray-400 text-lg">{feature.description}</p>
-            </div>
-          </motion.div>
+          <AnimatedSection key={index} direction={index % 2 === 0 ? "left" : "right"}>
+            <motion.div
+              className="bg-black p-8 rounded-xl shadow-xl"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="flex flex-col items-center text-center">
+                <motion.div
+                  // initial={{ rotate: 0 }}
+                  // animate={{ rotate: 360 }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                >
+                  {feature.icon}
+                </motion.div>
+                <h3 className="text-2xl font-semibold mt-6 mb-4 text-blue-300">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-400 text-lg">{feature.description}</p>
+              </div>
+            </motion.div>
+          </AnimatedSection>
         ))}
       </div>
     </section>
@@ -178,10 +223,14 @@ const NotificationsSection = () => {
   return (
     <section className="py-20 bg-black">
       <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-12 text-blue-400">
-          Stay Updated
-        </h2>
-        <NotificationsComponent />
+        <AnimatedSection>
+          <h2 className="text-4xl font-bold text-center mb-12 text-blue-400">
+            Stay Updated
+          </h2>
+        </AnimatedSection>
+        <AnimatedSection>
+          <NotificationsComponent />
+        </AnimatedSection>
       </div>
     </section>
   );
@@ -211,33 +260,39 @@ const TestimonialsSection = () => {
 
   return (
     <section className="py-24 px-4 bg-gray-900">
-      <h2 className="text-5xl font-bold text-center mb-16 text-blue-400">
-        What Our Community Says
-      </h2>
+      <AnimatedSection>
+        <h2 className="text-5xl font-bold text-center mb-16 text-blue-400">
+          What Our Community Says
+        </h2>
+      </AnimatedSection>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-7xl mx-auto">
         {testimonials.map((testimonial, index) => (
-          <motion.div
-            key={index}
-            className="bg-black p-8 rounded-xl shadow-xl"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-          >
-            <div className="flex justify-center mb-4">
-              {[...Array(testimonial.rating)].map((_, i) => (
-                <Star
-                  key={i}
-                  className="h-6 w-6 text-yellow-400 fill-current"
-                />
-              ))}
-            </div>
-            <p className="text-gray-300 italic mb-6 text-lg">
-              "{testimonial.quote}"
-            </p>
-            <p className="text-blue-400 font-semibold text-right">
-              - {testimonial.author}
-            </p>
-          </motion.div>
+          <AnimatedSection key={index} direction={index % 2 === 0 ? "left" : "right"}>
+            <motion.div
+              className="bg-black p-8 rounded-xl shadow-xl"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="flex justify-center mb-4">
+                {[...Array(testimonial.rating)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: i * 0.1 }}
+                  >
+                    <Star className="h-6 w-6 text-yellow-400 fill-current" />
+                  </motion.div>
+                ))}
+              </div>
+              <p className="text-gray-300 italic mb-6 text-lg">
+                "{testimonial.quote}"
+              </p>
+              <p className="text-blue-400 font-semibold text-right">
+                - {testimonial.author}
+              </p>
+            </motion.div>
+          </AnimatedSection>
         ))}
       </div>
     </section>
@@ -276,24 +331,27 @@ const FAQSection = () => {
   return (
     <section className="py-12 bg-black">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-8 text-blue-400">
-          Frequently Asked Questions
-        </h2>
+        <AnimatedSection>
+          <h2 className="text-3xl font-bold text-center mb-8 text-blue-400">
+            Frequently Asked Questions
+          </h2>
+        </AnimatedSection>
         <div className="max-w-2xl mx-auto">
           <Accordion type="single" collapsible className="w-full">
             {faqItems.map((item, index) => (
-              <AccordionItem
-                key={index}
-                value={`item-${index}`}
-                className="mb-4 border border-blue-800 rounded-lg overflow-hidden"
-              >
-                <AccordionTrigger className="text-left text-lg font-semibold p-4 bg-gray-900 hover:bg-gray-800 transition-all duration-300 text-blue-300">
-                  {item.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-gray-300 p-4 bg-black">
-                  {item.answer}
-                </AccordionContent>
-              </AccordionItem>
+              <AnimatedSection key={index} direction={index % 2 === 0 ? "left" : "right"}>
+                <AccordionItem
+                  value={`item-${index}`}
+                  className="mb-4 border border-blue-800 rounded-lg overflow-hidden"
+                >
+                  <AccordionTrigger className="text-left text-lg font-semibold p-4 bg-gray-900 hover:bg-gray-800 transition-all duration-300 text-blue-300">
+                    {item.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-gray-300 p-4 bg-black">
+                    {item.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              </AnimatedSection>
             ))}
           </Accordion>
         </div>

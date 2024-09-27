@@ -5,7 +5,6 @@ import { FaPlus, FaUserTie, FaClipboardList, FaProjectDiagram } from 'react-icon
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 // import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Footer } from '@/components/Footer';
@@ -38,13 +37,13 @@ const BusinessProfilePage: React.FC = () => {
     { id: '2', title: 'Data Analytics Dashboard', description: 'Creating a real-time analytics dashboard', professor: 'Prof. John Doe', status: 'Completed' },
     { id: '3', title: 'Blockchain Security Analysis', description: 'Analyzing security vulnerabilities in blockchain systems', professor: 'Dr. Emily Brown', status: 'On Hold' },
   ]);
-  const [newProject, setNewProject] = useState({ title: '', description: '', professor: '' });
+  const [newProject, setNewProject] = useState({ title: '', description: '', budget:'' ,timeline:Date.now()});
 
   const handleCreateProject = () => {
     // Here you would typically send the new project data to your backend
     console.log('Creating new project:', newProject);
     // Reset the form
-    setNewProject({ title: '', description: '', professor: '' });
+    setNewProject({ title: '', description: '', budget:'',timeline:Date.now()});
   };
 
   return (
@@ -104,36 +103,31 @@ const BusinessProfilePage: React.FC = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <form className="space-y-4">
-                <Input
-                  placeholder="Project Title"
-                  value={newProject.title}
-                  onChange={(e) => setNewProject({ ...newProject, title: e.target.value })}
-                />
-                <Textarea
-                  placeholder="Project Description"
-                  value={newProject.description}
-                  onChange={(e) => setNewProject({ ...newProject, description: e.target.value })}
-                />
-                <Select
-                  value={newProject.professor}
-                  onValueChange={(value) => setNewProject({ ...newProject, professor: value })}
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Assign Professor" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {professors.map((professor) => (
-                      <SelectItem key={professor.id} value={professor.name}>
-                        {professor.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                <Button onClick={handleCreateProject} className="w-full">
-                  <FaPlus className="mr-2" /> Create Project
-                </Button>
-              </form>
+            <form className="space-y-4">
+  <Input
+    placeholder="Project Title"
+    value={newProject.title}
+    onChange={(e) => setNewProject({ ...newProject, title: e.target.value })}
+  />
+  <Textarea
+    placeholder="Project Description"
+    value={newProject.description}
+    onChange={(e) => setNewProject({ ...newProject, description: e.target.value })}
+  />
+  <Input
+    placeholder="Budget"
+    value={newProject.budget}
+    onChange={(e) => setNewProject({ ...newProject, budget: e.target.value })}
+  />
+  <Input
+    placeholder="Timeline (YYYY-MM-DD)"
+    value={newProject.timeline}
+    onChange={(e) => setNewProject({ ...newProject, timeline: e.target.value })}
+  />
+  <Button onClick={handleCreateProject} className="w-full">
+    <FaPlus className="mr-2" /> Create Project
+  </Button>
+</form>
             </CardContent>
           </Card>
         </motion.div>
