@@ -195,7 +195,7 @@ const FeaturesSection = () => {
     },
     {
       icon: <Briefcase className="h-16 w-16 text-blue-400" />,
-      title: "Business Profile",
+      title: "Industry Profile",
       description:
         "Discover top talent, collaborate on cutting-edge research projects, and stay at the forefront of innovation in your industry.",
       benefits: [
