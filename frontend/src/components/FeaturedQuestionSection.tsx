@@ -64,7 +64,7 @@ const FeaturedQuestionsSection: React.FC = () => {
 
   return (
     <motion.section
-      className="py-20 bg-black"
+      className="py-20 bg-background/95"
       initial="hidden"
       animate="visible"
       variants={sectionVariants}

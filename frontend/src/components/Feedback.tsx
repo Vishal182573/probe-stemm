@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -8,11 +8,11 @@ const ContactForm: React.FC = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Handle form submission logic here
-    console.log('Form submitted');
+    console.log("Form submitted");
   };
 
   return (
-    <section className="py-12 bg-black">
+    <section className="py-12 bg-background">
       <div className="container mx-auto px-4 max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -22,11 +22,17 @@ const ContactForm: React.FC = () => {
         >
           <div className="flex flex-col md:flex-row">
             <div className="md:w-1/2 bg-gray-800 p-8 text-blue-300 flex flex-col justify-center">
-              <h2 className="text-3xl font-bold mb-4 text-blue-400">Contact Us</h2>
+              <h2 className="text-3xl font-bold mb-4 text-blue-400">
+                Contact Us
+              </h2>
               <h3 className="text-4xl font-extrabold mb-6 text-blue-300">
-                Want to give feedback/<br />Suggestions?
+                Want to give feedback/
+                <br />
+                Suggestions?
               </h3>
-              <p className="text-lg mb-8 text-gray-300">Send a mail directly to Us!</p>
+              <p className="text-lg mb-8 text-gray-300">
+                Send a mail directly to Us!
+              </p>
               <div className="relative w-64 h-64 mx-auto">
                 <motion.img
                   src="/api/placeholder/256/256"
@@ -38,7 +44,7 @@ const ContactForm: React.FC = () => {
                     type: "spring",
                     stiffness: 260,
                     damping: 20,
-                    duration: 0.6
+                    duration: 0.6,
                   }}
                 />
               </div>

@@ -207,7 +207,7 @@ const FeaturesSection = () => {
   ];
 
   return (
-    <section className="py-24 px-4 bg-gray-900">
+    <section className="py-24 px-4 bg-background/95">
       <AnimatedSection>
         <h2 className="text-5xl font-bold text-center mb-16 text-blue-400">
           Why Choose Probe STEM?
@@ -253,7 +253,7 @@ const FeaturesSection = () => {
 
 const NotificationsSection = () => {
   return (
-    <section className="py-20 bg-black">
+    <section className="py-20 bg-background/95">
       <div className="max-w-7xl mx-auto px-4">
         <AnimatedSection>
           <h2 className="text-4xl font-bold text-center mb-12 text-blue-400">
@@ -291,7 +291,7 @@ const TestimonialsSection = () => {
   ];
 
   return (
-    <section className="py-24 px-4 bg-gray-900">
+    <section className="py-24 px-4 bg-background/95">
       <AnimatedSection>
         <h2 className="text-5xl font-bold text-center mb-16 text-blue-400">
           What Our Community Says
@@ -373,7 +373,7 @@ const FAQSection = () => {
   ];
 
   return (
-    <section className="py-12 bg-black">
+    <section className="py-12 bg-background/95">
       <div className="container mx-auto px-4">
         <AnimatedSection>
           <h2 className="text-3xl font-bold text-center mb-8 text-blue-400">
