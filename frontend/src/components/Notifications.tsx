@@ -50,13 +50,13 @@ const NotificationsComponent: React.FC = () => {
   }, []);
 
   return (
-    <Card className="w-full max-w-3xl mx-auto bg-gray-900 border-blue-800">
+    <Card className="w-full max-w-3xl mx-auto bg-[#82CAFF] border-white">
       <CardHeader className="flex flex-row items-center justify-between">
-        <CardTitle className="text-2xl font-bold text-blue-400">
+        <CardTitle className="text-2xl font-bold text-blue-800">
           Notifications
         </CardTitle>
         {notifications.length > 0 && (
-          <Badge variant="secondary" className="bg-blue-600 text-white">
+          <Badge variant="secondary" className="bg-blue-500 text-white">
             {notifications.length} New
           </Badge>
         )}
@@ -68,7 +68,7 @@ const NotificationsComponent: React.FC = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="text-center text-gray-400"
+              className="text-center text-blue-600"
             >
               No new notifications
             </motion.p>
@@ -82,18 +82,18 @@ const NotificationsComponent: React.FC = () => {
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <Card className="bg-black border-blue-800">
+                  <Card className="bg-white border-blue-200">
                     <CardContent className="flex items-center p-4">
                       {notif.type === "course" ? (
-                        <BookOpen className="h-6 w-6 text-blue-400 mr-4" />
+                        <BookOpen className="h-6 w-6 text-blue-500 mr-4" />
                       ) : (
-                        <Video className="h-6 w-6 text-blue-400 mr-4" />
+                        <Video className="h-6 w-6 text-blue-500 mr-4" />
                       )}
                       <div>
-                        <h3 className="text-lg font-semibold text-blue-300">
+                        <h3 className="text-lg font-semibold text-blue-700">
                           {notif.title}
                         </h3>
-                        <p className="text-sm text-gray-400">{notif.date}</p>
+                        <p className="text-sm text-blue-500">{notif.date}</p>
                       </div>
                     </CardContent>
                   </Card>

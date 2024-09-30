@@ -47,10 +47,10 @@ const WebinarPage = () => {
     <div>
       <Navbar />
 
-      <section className="py-20 bg-black">
+      <section className="py-20 bg-[#82CAFF]">
         <div className="max-w-7xl mx-auto px-4">
           <AnimatedSection>
-            <h2 className="text-4xl font-bold text-center mb-12 text-blue-400">
+            <h2 className="text-4xl font-bold text-center mb-12 text-[#003366]">
               Stay Updated
             </h2>
           </AnimatedSection>

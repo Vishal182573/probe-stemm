@@ -1,5 +1,4 @@
-// pages/blogPost.tsx
-import { useState } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -23,22 +22,19 @@ interface BlogPost {
 const blogPosts: Record<string, BlogPost> = {
   "1": {
     title: "The Future of AI in Education",
-    content:
-      "Artificial Intelligence is revolutionizing the way we approach education...",
+    content: "Artificial Intelligence is revolutionizing the way we approach education...",
     upvotes: 15,
     downvotes: 2,
     comments: [
       {
         id: 1,
         author: "John Doe",
-        content:
-          "Great article! I'm excited to see how AI will shape education.",
+        content: "Great article! I'm excited to see how AI will shape education.",
       },
       {
         id: 2,
         author: "Jane Smith",
-        content:
-          "I have some concerns about the ethical implications of AI in education.",
+        content: "I have some concerns about the ethical implications of AI in education.",
       },
     ],
   },
@@ -68,62 +64,55 @@ const BlogPostPage = () => {
 
   if (!blogPost) {
     return (
-      <div className="flex flex-col min-h-screen bg-background text-foreground">
-        <Navbar />
-        <main className="flex-grow container mx-auto px-4 py-8">
-          <h1 className="text-4xl font-bold mb-8 text-primary">
-            Blog Post Not Found
-          </h1>
-        </main>
-        <Footer />
+      <div className="min-h-screen bg-[#82CAFF] text-gray-800 flex flex-col items-center justify-center">
+        <h1 className="text-4xl font-bold mb-4">Blog Post Not Found</h1>
+        <p className="text-xl">The requested blog post could not be found.</p>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-[#82CAFF] text-gray-800 flex flex-col">
       <Navbar />
       <main className="flex-grow container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold mb-8 text-primary">
-          {blogPost.title}
-        </h1>
-        <div className="bg-card p-6 rounded-xl shadow-xl mb-8">
+        <article className="bg-white rounded-lg shadow-lg p-6 mb-8">
+          <h1 className="text-3xl font-bold mb-4">{blogPost.title}</h1>
           <p className="text-lg mb-6">{blogPost.content}</p>
-          <div className="flex space-x-4">
-            <Button variant="ghost" size="sm">
-              <ThumbsUp className="mr-2 h-4 w-4" />
+          <div className="flex items-center space-x-4 text-white">
+            <Button variant="outline" className="flex items-center">
+              <ThumbsUp className="mr-2" size={18} />
               {blogPost.upvotes}
             </Button>
-            <Button variant="ghost" size="sm">
-              <ThumbsDown className="mr-2 h-4 w-4" />
+            <Button variant="outline" className="flex items-center">
+              <ThumbsDown className="mr-2" size={18} />
               {blogPost.downvotes}
             </Button>
           </div>
-        </div>
-        <h2 className="text-2xl font-semibold mb-4 text-primary">Comments</h2>
-        <div className="space-y-4 mb-8">
-          {comments.map((comment) => (
-            <div key={comment.id} className="bg-card p-4 rounded-lg">
-              <p className="font-semibold text-primary">{comment.author}</p>
-              <p className="text-muted-foreground">{comment.content}</p>
-            </div>
-          ))}
-        </div>
-        <form onSubmit={handleCommentSubmit} className="flex space-x-2">
-          <input
-            type="text"
-            value={newComment}
-            onChange={(e) => setNewComment(e.target.value)}
-            placeholder="Add a comment..."
-            className="flex-grow p-2 rounded-lg bg-input text-foreground"
-          />
-          <Button
-            type="submit"
-            className="bg-primary hover:bg-primary/80 text-primary-foreground"
-          >
-            <Send className="h-5 w-5" />
-          </Button>
-        </form>
+        </article>
+
+        <section className="bg-white rounded-lg shadow-lg p-6">
+          <h2 className="text-2xl font-bold mb-4">Comments</h2>
+          <ul className="space-y-4 mb-6">
+            {comments.map((comment) => (
+              <li key={comment.id} className="border-b pb-4">
+                <p className="font-semibold">{comment.author}</p>
+                <p>{comment.content}</p>
+              </li>
+            ))}
+          </ul>
+          <form onSubmit={handleCommentSubmit} className="flex space-x-2">
+            <input
+              type="text"
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+              placeholder="Add a comment..."
+              className="flex-grow p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#82CAFF]"
+            />
+            <Button type="submit" className="bg-[#82CAFF] hover:bg-[#6AB6E6] text-white">
+              <Send size={18} />
+            </Button>
+          </form>
+        </section>
       </main>
       <Footer />
     </div>

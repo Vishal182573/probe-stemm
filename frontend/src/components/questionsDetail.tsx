@@ -74,116 +74,116 @@ const QuestionDetailPage: React.FC = () => {
   if (!question) return <div>Loading...</div>;
 
   return (
-    <>
-    <Navbar/>
-    <motion.div 
-      initial={{ opacity: 0 }} 
-      animate={{ opacity: 1 }} 
-      exit={{ opacity: 0 }}
-      className="container mx-auto p-8 min-h-screen"
-    >
-      <motion.h1 
-        initial={{ y: -50 }}
-        animate={{ y: 0 }}
-        className="text-4xl font-bold mb-8"
+    <div className="bg-[#82CAFF] min-h-screen">
+      <Navbar/>
+      <motion.div 
+        initial={{ opacity: 0 }} 
+        animate={{ opacity: 1 }} 
+        exit={{ opacity: 0 }}
+        className="container mx-auto p-8"
       >
-        {question.title}
-      </motion.h1>
+        <motion.h1 
+          initial={{ y: -50 }}
+          animate={{ y: 0 }}
+          className="text-4xl font-bold mb-8 text-gray-800"
+        >
+          {question.title}
+        </motion.h1>
 
-      <Card className="mb-8">
-        <CardContent className="p-6">
-          <div className="flex items-start space-x-4">
-            <div className="flex flex-col items-center">
-              <Button variant="outline" className="px-2 py-1 mb-2">
-                <FaArrowUp className="text-blue-600" />
-              </Button>
-              <span className="text-sm font-medium">{question.votes}</span>
-              <Button variant="outline" className="px-2 py-1 mt-2">
-                <FaArrowDown className="text-red-600" />
-              </Button>
-            </div>
-            <div className="flex-grow">
-              <p className="text-lg mb-4">{question.content}</p>
-              <div className="flex items-center text-sm text-gray-500">
-                <FaUser className="mr-1" />
-                <span>{question.author}</span>
-                <span className="mx-2">•</span>
-                <FaClock className="mr-1" />
-                <span>{question.time}</span>
+        <Card className="mb-8 bg-white">
+          <CardContent className="p-6">
+            <div className="flex items-start space-x-4">
+              <div className="flex flex-col items-center">
+                <Button variant="outline" className="px-2 py-1 mb-2">
+                  <FaArrowUp className="text-blue-600" />
+                </Button>
+                <span className="text-sm font-medium text-gray-800">{question.votes}</span>
+                <Button variant="outline" className="px-2 py-1 mt-2">
+                  <FaArrowDown className="text-red-600" />
+                </Button>
+              </div>
+              <div className="flex-grow">
+                <p className="text-lg mb-4 text-gray-800">{question.content}</p>
+                <div className="flex items-center text-sm text-gray-600">
+                  <FaUser className="mr-1" />
+                  <span>{question.author}</span>
+                  <span className="mx-2">•</span>
+                  <FaClock className="mr-1" />
+                  <span>{question.time}</span>
+                </div>
               </div>
             </div>
-          </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
 
-      <motion.h2 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.2 }}
-        className="text-2xl font-semibold mb-4"
-      >
-        {answers.length} Answers
-      </motion.h2>
-
-      {answers.map((answer, index) => (
-        <motion.div
-          key={answer.id}
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 * index }}
+        <motion.h2 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="text-2xl font-semibold mb-4 text-gray-800"
         >
-          <Card className="mb-4">
-            <CardContent className="p-6">
-              <div className="flex items-start space-x-4">
-                <div className="flex flex-col items-center">
-                  <Button variant="outline" className="px-2 py-1 mb-2">
-                    <FaArrowUp className="text-blue-600" />
-                  </Button>
-                  <span className="text-sm font-medium">{answer.votes}</span>
-                  <Button variant="outline" className="px-2 py-1 mt-2">
-                    <FaArrowDown className="text-red-600" />
-                  </Button>
-                </div>
-                <div className="flex-grow">
-                  <p className="text-lg mb-4">{answer.content}</p>
-                  <div className="flex items-center text-sm text-gray-500">
-                    <FaUser className="mr-1" />
-                    <span>{answer.author}</span>
-                    <span className="mx-2">•</span>
-                    <FaClock className="mr-1" />
-                    <span>{answer.time}</span>
+          {answers.length} Answers
+        </motion.h2>
+
+        {answers.map((answer, index) => (
+          <motion.div
+            key={answer.id}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 * index }}
+          >
+            <Card className="mb-4 bg-white">
+              <CardContent className="p-6">
+                <div className="flex items-start space-x-4">
+                  <div className="flex flex-col items-center">
+                    <Button variant="outline" className="px-2 py-1 mb-2">
+                      <FaArrowUp className="text-blue-600" />
+                    </Button>
+                    <span className="text-sm font-medium text-gray-800">{answer.votes}</span>
+                    <Button variant="outline" className="px-2 py-1 mt-2">
+                      <FaArrowDown className="text-red-600" />
+                    </Button>
+                  </div>
+                  <div className="flex-grow">
+                    <p className="text-lg mb-4 text-gray-800">{answer.content}</p>
+                    <div className="flex items-center text-sm text-gray-600">
+                      <FaUser className="mr-1" />
+                      <span>{answer.author}</span>
+                      <span className="mx-2">•</span>
+                      <FaClock className="mr-1" />
+                      <span>{answer.time}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
-      ))}
+              </CardContent>
+            </Card>
+          </motion.div>
+        ))}
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5 }}
-        className="mt-8"
-      >
-        <h3 className="text-xl font-semibold mb-4">Your Answer</h3>
-        <Textarea
-          placeholder="Write your answer here..."
-          value={newAnswer}
-          onChange={(e) => setNewAnswer(e.target.value)}
-          className="w-full mb-4"
-          rows={6}
-        />
-        <Button
-          onClick={handleAddAnswer}
-          className="bg-blue-600 hover:bg-blue-700 text-white flex items-center"
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          className="mt-8"
         >
-          <FaComment className="mr-2" /> Post Answer
-        </Button>
+          <h3 className="text-xl font-semibold mb-4 text-gray-800">Your Answer</h3>
+          <Textarea
+            placeholder="Write your answer here..."
+            value={newAnswer}
+            onChange={(e) => setNewAnswer(e.target.value)}
+            className="w-full mb-4 bg-white text-gray-800"
+            rows={6}
+          />
+          <Button
+            onClick={handleAddAnswer}
+            className="bg-blue-600 hover:bg-blue-700 text-white flex items-center"
+          >
+            <FaComment className="mr-2" /> Post Answer
+          </Button>
+        </motion.div>
       </motion.div>
-    </motion.div>
-    <Footer/>
-    </>
+      <Footer/>
+    </div>
   );
 };
 

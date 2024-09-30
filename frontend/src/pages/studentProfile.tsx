@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Award, Briefcase, GraduationCap, Star, Edit3 } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 
 const StudentProfilePage: React.FC = () => {
   const staggerChildren = {
@@ -199,11 +200,7 @@ const StudentProfilePage: React.FC = () => {
         </section>
       </main>
 
-      <footer className="bg-secondary py-6 mt-12">
-        <div className="container mx-auto px-4 text-center text-secondary-foreground">
-          <p>&copy; 2024 Probe STEM. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer/>
     </div>
   );
 };

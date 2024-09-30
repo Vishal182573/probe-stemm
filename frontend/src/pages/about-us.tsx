@@ -12,7 +12,7 @@ import { Navbar } from "@/components/Navbar";
 
 const AboutUsPage: React.FC = () => {
   return (
-    <>
+    <div className="bg-[#82CAFF] min-h-screen text-gray-800">
       <Navbar />
       <motion.div
         initial={{ opacity: 0 }}
@@ -23,7 +23,7 @@ const AboutUsPage: React.FC = () => {
         <motion.h1
           initial={{ y: -50 }}
           animate={{ y: 0 }}
-          className="text-4xl font-bold mb-8 text-center text-blue-600"
+          className="text-4xl font-bold mb-8 text-center text-gray-900"
         >
           Probe STEM
         </motion.h1>
@@ -34,23 +34,23 @@ const AboutUsPage: React.FC = () => {
           transition={{ delay: 0.2 }}
           className="mb-12"
         >
-          <Card>
+          <Card className="bg-white shadow-lg">
             <CardHeader>
-              <CardTitle className="text-2xl">About Us</CardTitle>
+              <CardTitle className="text-2xl text-gray-900">About Us</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-xl text-red-600 font-semibold mb-4">
+              <p className="text-xl text-red-700 font-semibold mb-4">
                 Empowering the next generation to innovate and thrive alongside
                 global researchers.
               </p>
-              <p className="mb-4">
+              <p className="mb-4 text-gray-700">
                 Probe STEM is founded on the belief that young minds have the
                 potential to shape the future of Science and Technology. Our
                 goal is to empower students by linking them with visionary
                 researchers and industry leaders for collaboration on innovative
                 projects.
               </p>
-              <p>
+              <p className="text-gray-700">
                 Faculty often face challenges in finding industry projects and
                 engaging passionate students beyond the classroom settings. Our
                 platform bridges that gap, offering a 3-Body collaboration to
@@ -68,7 +68,7 @@ const AboutUsPage: React.FC = () => {
           initial={{ y: -30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.3 }}
-          className="text-3xl font-bold mb-8 text-center"
+          className="text-3xl font-bold mb-8 text-center text-gray-900"
         >
           Why choose Probe STEM?
         </motion.h2>
@@ -79,14 +79,14 @@ const AboutUsPage: React.FC = () => {
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.4 }}
           >
-            <Card className="h-full">
+            <Card className="h-full bg-white shadow-lg">
               <CardHeader>
-                <CardTitle className="flex items-center text-xl">
-                  <FaIndustry className="mr-2 text-blue-400" /> Industry
+                <CardTitle className="flex items-center text-xl text-gray-900">
+                  <FaIndustry className="mr-2 text-blue-500" /> Industry
                   Collaboration
                 </CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="text-gray-700">
                 <p>
                   In today's era of innovation, academics and industry often
                   work in isolation. Bridging the gap between them could spark a
@@ -94,7 +94,7 @@ const AboutUsPage: React.FC = () => {
                   contributions by aligning their work with real-world
                   applications.
                 </p>
-                <p className="mt-2 font-semibold">
+                <p className="mt-2 font-semibold text-gray-900">
                   This will go to Company Projects page.
                 </p>
               </CardContent>
@@ -106,14 +106,14 @@ const AboutUsPage: React.FC = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            <Card className="h-full">
+            <Card className="h-full bg-white shadow-lg">
               <CardHeader>
-                <CardTitle className="flex items-center text-xl">
-                  <FaExchangeAlt className="mr-2 text-green-400" /> Knowledge
+                <CardTitle className="flex items-center text-xl text-gray-900">
+                  <FaExchangeAlt className="mr-2 text-green-500" /> Knowledge
                   Exchange
                 </CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="text-gray-700">
                 <p>
                   In academics, students often face critical questions, and
                   reliable discussions can sometimes be the key to saving a
@@ -122,7 +122,7 @@ const AboutUsPage: React.FC = () => {
                   subjects, exam preparation, research fields, and career paths,
                   encouraging a vibrant exchange of knowledge and ideas.
                 </p>
-                <p className="mt-2 font-semibold">
+                <p className="mt-2 font-semibold text-gray-900">
                   This will go to Discussion Board.
                 </p>
               </CardContent>
@@ -134,14 +134,14 @@ const AboutUsPage: React.FC = () => {
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.6 }}
           >
-            <Card className="h-full">
+            <Card className="h-full bg-white shadow-lg">
               <CardHeader>
-                <CardTitle className="flex items-center text-xl">
-                  <FaLightbulb className="mr-2 text-yellow-400" /> Research
+                <CardTitle className="flex items-center text-xl text-gray-900">
+                  <FaLightbulb className="mr-2 text-yellow-500" /> Research
                   Spotlight Corner
                 </CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="text-gray-700">
                 <p>
                   A strong visibility of fundamental research can be a
                   game-changer.
@@ -162,14 +162,14 @@ const AboutUsPage: React.FC = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.7 }}
         >
-          <Card>
+          <Card className="bg-white shadow-lg">
             <CardHeader>
-              <CardTitle className="flex items-center text-2xl">
-                <FaGraduationCap className="mr-2 text-purple-400" /> Company
+              <CardTitle className="flex items-center text-2xl text-gray-900">
+                <FaGraduationCap className="mr-2 text-purple-500" /> Company
                 Projects
               </CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="text-gray-700">
               <p>
                 Only faculty members are eligible to apply for these projects by
                 completing the form. When a company posts a project, a
@@ -190,7 +190,7 @@ const AboutUsPage: React.FC = () => {
         </motion.div>
       </motion.div>
       <Footer />
-    </>
+    </div>
   );
 };
 

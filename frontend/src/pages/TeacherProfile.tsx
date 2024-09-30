@@ -30,6 +30,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 
 const ProfessorProfilePage: React.FC = () => {
   const [isWebinarDialogOpen, setIsWebinarDialogOpen] = useState(false);
@@ -363,12 +364,7 @@ const ProfessorProfilePage: React.FC = () => {
           </div>
         </section>
       </main>
-
-      <footer className="bg-secondary py-6 mt-12">
-        <div className="container mx-auto px-4 text-center text-secondary-foreground">
-          <p>&copy; 2024 Probe STEM. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer/>
     </div>
   );
 };

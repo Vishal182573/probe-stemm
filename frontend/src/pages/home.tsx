@@ -30,7 +30,7 @@ interface AnimatedSectionProps {
 
 const HomePage = () => {
   return (
-    <div className="flex flex-col min-h-screen bg-black text-white">
+    <div className="flex flex-col min-h-screen bg-[#82CAFF] text-[#003366]">
       <Navbar />
       <main className="flex-grow">
         <HeroSection />
@@ -74,16 +74,16 @@ const HeroSection = () => {
         />
       </AnimatePresence>
 
-      <div className="absolute inset-0 bg-black bg-opacity-70 z-10" />
+      <div className="absolute inset-0 bg-[#82CAFF] bg-opacity-70 z-10" />
 
       <div className="relative z-20 text-center px-4 max-w-5xl mx-auto">
         <motion.h1
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-6xl md:text-8xl font-extrabold mb-6 text-white"
+          className="text-6xl md:text-8xl font-extrabold mb-6 text-[#003366]"
         >
-          Revolutionize Your <span className="text-blue-400">STEM</span>{" "}
+          Revolutionize Your <span className="text-[#0056b3]">STEM</span>{" "}
           Learning
         </motion.h1>
 
@@ -91,7 +91,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-xl md:text-2xl mb-10 text-blue-200 max-w-3xl mx-auto"
+          className="text-xl md:text-2xl mb-10 text-[#004080] max-w-3xl mx-auto"
         >
           Probe STEM: Where innovation meets education. Dive into a world of
           interactive learning, cutting-edge technology, and global
@@ -107,7 +107,7 @@ const HeroSection = () => {
           <Link to="/login">
             <Button
               size="lg"
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-md transition-all duration-300 text-lg"
+              className="bg-[#0056b3] hover:bg-[#003d82] text-white font-bold py-4 px-8 rounded-md transition-all duration-300 text-lg"
             >
               Get Started
               <Rocket className="ml-2 h-6 w-6" />
@@ -118,7 +118,7 @@ const HeroSection = () => {
             <Button
               size="lg"
               variant="outline"
-              className="bg-transparent border-2 border-blue-400 text-blue-400 font-bold py-4 px-8 rounded-md transition-all duration-300 hover:bg-blue-400 hover:text-black text-lg"
+              className="bg-transparent border-2 border-[#0056b3] text-[#0056b3] font-bold py-4 px-8 rounded-md transition-all duration-300 hover:bg-[#0056b3] hover:text-white text-lg"
             >
               Learn More
             </Button>
@@ -131,7 +131,7 @@ const HeroSection = () => {
         animate={{ y: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 1.5 }}
       >
-        <ChevronDown className="text-blue-400 h-10 w-10" />
+        <ChevronDown className="text-[#0056b3] h-10 w-10" />
       </motion.div>
     </section>
   );
@@ -172,7 +172,7 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
 const FeaturesSection = () => {
   const features = [
     {
-      icon: <UserCircle className="h-16 w-16 text-blue-400" />,
+      icon: <UserCircle className="h-16 w-16 text-[#0056b3]" />,
       title: "Student Profile",
       description:
         "Showcase your academic journey, research highlights, and achievements. Connect with professors and industry partners for exciting opportunities.",
@@ -183,7 +183,7 @@ const FeaturesSection = () => {
       ],
     },
     {
-      icon: <GraduationCap className="h-16 w-16 text-blue-400" />,
+      icon: <GraduationCap className="h-16 w-16 text-[#0056b3]" />,
       title: "Professor Profile",
       description:
         "Manage your academic portfolio, showcase research projects, and connect with talented students and industry partners.",
@@ -194,7 +194,7 @@ const FeaturesSection = () => {
       ],
     },
     {
-      icon: <Briefcase className="h-16 w-16 text-blue-400" />,
+      icon: <Briefcase className="h-16 w-16 text-[#0056b3]" />,
       title: "Industry Profile",
       description:
         "Discover top talent, collaborate on cutting-edge research projects, and stay at the forefront of innovation in your industry.",
@@ -207,9 +207,9 @@ const FeaturesSection = () => {
   ];
 
   return (
-    <section className="py-24 px-4 bg-background/95">
+    <section className="py-24 px-4 bg-[#82CAFF]">
       <AnimatedSection>
-        <h2 className="text-5xl font-bold text-center mb-16 text-blue-400">
+        <h2 className="text-5xl font-bold text-center mb-16 text-[#003366]">
           Why Choose Probe STEM?
         </h2>
       </AnimatedSection>
@@ -220,29 +220,28 @@ const FeaturesSection = () => {
             direction={index % 2 === 0 ? "left" : "right"}
           >
             <motion.div
-              className="bg-black p-8 rounded-xl shadow-xl h-full flex flex-col"
+              className="bg-white p-8 rounded-xl shadow-xl h-full flex flex-col"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             >
               <div className="flex flex-col items-center text-center flex-grow">
                 {feature.icon}
 
-                <h3 className="text-2xl font-semibold mt-6 mb-4 text-blue-300">
+                <h3 className="text-2xl font-semibold mt-6 mb-4 text-[#0056b3]">
                   {feature.title}
                 </h3>
-                <p className="text-gray-400 text-lg mb-6">
+                <p className="text-[#004080] text-lg mb-6">
                   {feature.description}
                 </p>
                 <ul className="text-left w-full">
                   {feature.benefits.map((benefit, idx) => (
                     <li key={idx} className="flex items-center mb-2">
-                      <Star className="h-5 w-5 text-blue-400 mr-2" />
-                      <span className="text-gray-300">{benefit}</span>
+                      <Star className="h-5 w-5 text-[#0056b3] mr-2" />
+                      <span className="text-[#003366]">{benefit}</span>
                     </li>
                   ))}
                 </ul>
               </div>
-              <Button className="mt-6 w-full">Learn More</Button>
             </motion.div>
           </AnimatedSection>
         ))}
@@ -253,10 +252,10 @@ const FeaturesSection = () => {
 
 const NotificationsSection = () => {
   return (
-    <section className="py-20 bg-background/95">
+    <section className="py-20 bg-[#82CAFF]">
       <div className="max-w-7xl mx-auto px-4">
         <AnimatedSection>
-          <h2 className="text-4xl font-bold text-center mb-12 text-blue-400">
+          <h2 className="text-4xl font-bold text-center mb-12 text-[#003366]">
             Stay Updated
           </h2>
         </AnimatedSection>
@@ -291,9 +290,9 @@ const TestimonialsSection = () => {
   ];
 
   return (
-    <section className="py-24 px-4 bg-background/95">
+    <section className="py-24 px-4 bg-[#82CAFF]">
       <AnimatedSection>
-        <h2 className="text-5xl font-bold text-center mb-16 text-blue-400">
+        <h2 className="text-5xl font-bold text-center mb-16 text-[#003366]">
           What Our Community Says
         </h2>
       </AnimatedSection>
@@ -304,7 +303,7 @@ const TestimonialsSection = () => {
             direction={index % 2 === 0 ? "left" : "right"}
           >
             <motion.div
-              className="bg-black p-8 rounded-xl shadow-xl"
+              className="bg-white p-8 rounded-xl shadow-xl"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             >
@@ -320,10 +319,10 @@ const TestimonialsSection = () => {
                   </motion.div>
                 ))}
               </div>
-              <p className="text-gray-300 italic mb-6 text-lg">
+              <p className="text-[#004080] italic mb-6 text-lg">
                 "{testimonial.quote}"
               </p>
-              <p className="text-blue-400 font-semibold text-right">
+              <p className="text-[#0056b3] font-semibold text-right">
                 - {testimonial.author}
               </p>
             </motion.div>
@@ -373,10 +372,10 @@ const FAQSection = () => {
   ];
 
   return (
-    <section className="py-12 bg-background/95">
+    <section className="py-12 bg-[#82CAFF]">
       <div className="container mx-auto px-4">
         <AnimatedSection>
-          <h2 className="text-3xl font-bold text-center mb-8 text-blue-400">
+          <h2 className="text-3xl font-bold text-center mb-8 text-blue-600">
             Frequently Asked Questions
           </h2>
         </AnimatedSection>
@@ -389,12 +388,12 @@ const FAQSection = () => {
               >
                 <AccordionItem
                   value={`item-${index}`}
-                  className="mb-4 border border-blue-800 rounded-lg overflow-hidden"
+                  className="mb-4 border border-blue-200 rounded-lg overflow-hidden"
                 >
-                  <AccordionTrigger className="text-left text-lg font-semibold p-4 bg-gray-900 hover:bg-gray-800 transition-all duration-300 text-blue-300">
+                  <AccordionTrigger className="text-left text-lg font-semibold p-4 bg-white hover:bg-gray-50 transition-all duration-300 text-blue-600">
                     {item.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-gray-300 p-4 bg-black">
+                  <AccordionContent className="text-gray-700 p-4 bg-white">
                     {item.answer}
                   </AccordionContent>
                 </AccordionItem>

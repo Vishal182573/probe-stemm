@@ -64,15 +64,15 @@ const FeaturedQuestionsSection: React.FC = () => {
 
   return (
     <motion.section
-      className="py-20 bg-background/95"
+      className="py-20 bg-[#82CAFF]"
       initial="hidden"
       animate="visible"
       variants={sectionVariants}
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 ">
         <motion.h2
           variants={itemVariants}
-          className="text-3xl font-bold text-center mb-12 text-blue-400"
+          className="text-3xl font-bold text-center mb-12 text-blue-800"
         >
           Featured Discussions
         </motion.h2>
@@ -80,26 +80,26 @@ const FeaturedQuestionsSection: React.FC = () => {
         <div className="space-y-8">
           {featuredQuestions.map((question) => (
             <motion.div key={question.id} variants={itemVariants}>
-              <Card className="bg-gray-900 border border-blue-800 hover:border-blue-600 transition-colors duration-300">
+              <Card className="bg-white border border-blue-200 hover:border-blue-400 transition-colors duration-300 shadow-md">
                 <CardContent className="p-6">
                   <div className="flex items-start space-x-4">
                     <div className="flex flex-col items-center">
                       <Button
                         variant="outline"
-                        className="px-2 py-1 mb-2 hover:bg-blue-700 transition-colors duration-300"
+                        className="px-2 py-1 mb-2 hover:bg-blue-100 transition-colors duration-300"
                       >
                         <FaArrowUp className="text-blue-600" />
                       </Button>
-                      <span className="text-sm font-medium text-blue-400">
+                      <span className="text-sm font-medium text-blue-600">
                         {question.votes}
                       </span>
                     </div>
                     <div className="flex-grow">
-                      <h3 className="text-xl font-semibold mb-2 text-blue-300">
+                      <h3 className="text-xl font-semibold mb-2 text-blue-700">
                         {question.title}
                       </h3>
-                      <p className="text-gray-300 mb-4">{question.content}</p>
-                      <div className="flex items-center text-sm text-gray-400">
+                      <p className="text-gray-700 mb-4">{question.content}</p>
+                      <div className="flex items-center text-sm text-gray-500">
                         <FaUser className="mr-1" />
                         <span>{question.author}</span>
                         <span className="mx-2">•</span>
